@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorpaneFX" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeScreen">
+   <children>
+      <TabPane layoutY="-1.0" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="ctabFX" text="Customers">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="TOP_CENTER" prefHeight="372.0" prefWidth="600.0">
+                           <children>
+                              <Label text="Customers">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TableView fx:id="customertableFX" prefHeight="275.0" prefWidth="600.0">
+                                <columns>
+                                  <TableColumn fx:id="customeridFX" prefWidth="108.0" text="ID" />
+                                  <TableColumn fx:id="customernameFX" prefWidth="261.0" text="Name" />
+                                    <TableColumn fx:id="customerphoneFX" minWidth="0.0" prefWidth="230.0" text="Phone Number" />
+                                </columns>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </TableView>
+                              <GridPane alignment="CENTER">
+                                <columnConstraints>
+                                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#onAddCustomer" text="Add" />
+                                    <Button mnemonicParsing="false" onAction="#onUpdateCustomer" text="Update" GridPane.columnIndex="1" />
+                                    <Button mnemonicParsing="false" onAction="#onDeleteCustomer" text="Delete" GridPane.columnIndex="2" />
+                                    <Button mnemonicParsing="false" onAction="#onLogout" text="Logout" GridPane.columnIndex="3" />
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab fx:id="atabFX" text="Appointments">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="TOP_CENTER" prefHeight="372.0" prefWidth="600.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="36.0" prefWidth="600.0">
+                                 <children>
+                                    <Label text="Appointments">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="250.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <HBox alignment="CENTER_RIGHT" prefHeight="36.0" prefWidth="227.0">
+                                       <children>
+                                          <RadioButton fx:id="allFX" mnemonicParsing="false" onAction="#onToggleAll" selected="true" text="All">
+                                             <HBox.margin>
+                                                <Insets left="50.0" right="15.0" />
+                                             </HBox.margin>
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="toggle1" />
+                                             </toggleGroup>
+                                          </RadioButton>
+                                          <RadioButton fx:id="monthFX" mnemonicParsing="false" onAction="#onToggleMonth" text="Month" toggleGroup="$toggle1">
+                                             <HBox.margin>
+                                                <Insets right="15.0" />
+                                             </HBox.margin>
+                                          </RadioButton>
+                                          <RadioButton fx:id="weekFX" mnemonicParsing="false" onAction="#onToggleWeek" text="Week" toggleGroup="$toggle1" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </HBox>
+                                 </children>
+                              </HBox>
+                              <TableView fx:id="appointmenttableFX" prefHeight="275.0" prefWidth="600.0">
+                                 <columns>
+                                    <TableColumn fx:id="appointmentidFX" prefWidth="37.0" text="Appointment_ID" />
+                                    <TableColumn fx:id="titleFX" prefWidth="59.0" text="Title" />
+                                    <TableColumn fx:id="descriptionFX" prefWidth="65.0" text="Description" />
+                                    <TableColumn fx:id="locationFX" prefWidth="76.0" text="Location" />
+                                    <TableColumn fx:id="contactFX" prefWidth="63.0" text="Contact" />
+                                    <TableColumn fx:id="typeFX" prefWidth="61.0" text="Type" />
+                                    <TableColumn fx:id="startFX" prefWidth="76.0" text="Start Date and Time" />
+                                    <TableColumn fx:id="endFX" prefWidth="48.0" text="End Date and Time" />
+                                    <TableColumn fx:id="customerid_appointmentsFX" prefWidth="75.0" text="Customer_ID" />
+                                    <TableColumn fx:id="useridFX" prefWidth="39.0" text="User_ID" />
+                                 </columns>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </TableView>
+                              <GridPane alignment="CENTER">
+                                 <columnConstraints>
+                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#onAddAppointment" text="Add" />
+                                    <Button mnemonicParsing="false" onAction="#onUpdateAppointment" text="Update" GridPane.columnIndex="1" />
+                                    <Button mnemonicParsing="false" onAction="#onDeleteAppointment" text="Delete" GridPane.columnIndex="2" />
+                                    <Button mnemonicParsing="false" onAction="#onLogout" text="Logout" GridPane.columnIndex="3" />
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab fx:id="rtabFX" text="Reports">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="TOP_CENTER" prefHeight="372.0" prefWidth="600.0">
+                           <children>
+                              <Label text="Reports">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" text="Report 1">
+                                 <VBox.margin>
+                                    <Insets top="25.0" />
+                                 </VBox.margin>
+                              </Button>
+                              <Button mnemonicParsing="false" text="Button">
+                                 <VBox.margin>
+                                    <Insets top="25.0" />
+                                 </VBox.margin>
+                              </Button>
+                              <Button mnemonicParsing="false" text="Button">
+                                 <VBox.margin>
+                                    <Insets top="25.0" />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </children></AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
