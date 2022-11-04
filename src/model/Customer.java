@@ -1,5 +1,13 @@
 package model;
 
+import helper.JDBC;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Customer {
 
     private int customerId;
@@ -12,14 +20,16 @@ public class Customer {
 
     private String phone;
 
-    private CustomerDao.Country country;
+    private String country;
 
-    private CustomerDao.DivisionId divisionId;
+    private int divisionId;
+
+    private String division;
 
 
 
     public Customer(int customerId, String name, String address, String postalCode, String phone,
-                    CustomerDao.Country country, CustomerDao.DivisionId divisionId){
+                    String country, int divisionId) throws SQLException {
         this.customerId = customerId;
         this.name = name;
         this.address = address;
@@ -27,6 +37,10 @@ public class Customer {
         this.phone = phone;
         this.country = country;
         this.divisionId = divisionId;
+
+
+
+
     }
 
     public int getCustomerId() {
@@ -69,20 +83,39 @@ public class Customer {
         this.phone = phone;
     }
 
-    public CustomerDao.Country getCountry(){
+    public String getCountry(){
         return country;
     }
 
-    public void setCountry(CustomerDao.Country country){
+    public void setCountry(String country){
         this.country = country;
     }
 
-    public CustomerDao.DivisionId getDivisionId(){
+    public int getDivisionId(){
         return divisionId;
     }
 
-    public void setDivisionId(CustomerDao.DivisionId divisionId){
+    public void setDivisionId(int divisionId){
         this.divisionId = divisionId;
+    }
+
+    public void setDivision() throws SQLException {
+        String sql = "SELECT Division FROM client_schedule.first_level_divisions WHERE Division_ID =?";
+        PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+        ps.setString(1, Integer.toString(divisionId));
+        ResultSet rs = ps.executeQuery();
+        ObservableList<String> divisionList = FXCollections.observableArrayList();
+        while(rs.next()){
+            String divisionSet =  rs.getString("Division");
+
+            divisionList.add(divisionSet);
+        }
+        this.division = divisionList.get(0);
+    }
+
+    public String getDivision() throws SQLException {
+        setDivision();
+        return division;
     }
 
 

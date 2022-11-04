@@ -1,7 +1,10 @@
 package controller;
 
+import com.mysql.cj.util.StringInspector;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
@@ -9,17 +12,27 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import model.Appointment;
+import model.AppointmentDao;
+import model.CustomerDao;
 
 import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
-public class AddAppointment {
+public class AddAppointment implements Initializable {
     public TextField appointmentidFX;
     public TextField titleFX;
     public TextField descriptionFX;
     public TextField locationFX;
     public TextField typeFX;
     public ChoiceBox contactFX;
+
     public ChoiceBox customeridFX;
     public ChoiceBox starttimeFX;
     public ChoiceBox endtimeFX;
@@ -28,10 +41,38 @@ public class AddAppointment {
     public DatePicker enddateFX;
     public AnchorPane anchorpaneFX;
 
-    public void onSave(ActionEvent actionEvent) {
+    /***
+     * Populates the items in the Choice boxes
+     * @param url
+     * @param resourceBundle
+     */
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        starttimeFX.setItems((ObservableList) AppointmentDao.getAllTimes());
+        endtimeFX.setItems((ObservableList) AppointmentDao.getAllTimes());
+
+        try {
+            contactFX.setItems(AppointmentDao.selectContacts());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        try {
+            customeridFX.setItems(AppointmentDao.selectCustomerID());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        try {
+            useridFX.setItems(AppointmentDao.selectUserID());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
-    public void onClose(ActionEvent actionEvent) throws IOException {
+    public void toHome() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/HomeScreen.fxml")));
         Stage stage = (Stage) (anchorpaneFX).getScene().getWindow();
         Scene scene = new Scene(root, 600, 400);
@@ -39,4 +80,35 @@ public class AddAppointment {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void onSave(ActionEvent actionEvent) throws IOException {
+        int appointmentID = 222;
+        String title = titleFX.getText();
+        String description = descriptionFX.getText();
+        String location = locationFX.getText();
+        String type = typeFX.getText();
+        String contact = (String) contactFX.getValue();
+        int customerID = Integer.parseInt((String) customeridFX.getValue());
+        LocalTime startTime = LocalTime.parse((String) starttimeFX.getValue());
+        LocalTime endTime = LocalTime.parse((String) endtimeFX.getValue());
+        int userID = Integer.parseInt((String)useridFX.getValue());
+        LocalDate startDate = startdateFX.getValue();
+        LocalDate endDate = enddateFX.getValue();
+
+        LocalDateTime start = LocalDateTime.of(startDate, startTime);
+        LocalDateTime end = LocalDateTime.of( endDate, endTime);
+
+        Appointment appointment = new Appointment(appointmentID, title, description, location, contact, type, start, end,
+                customerID, userID);
+        AppointmentDao.insertAppointment(appointment);
+        toHome();
+
+
+    }
+
+    public void onClose(ActionEvent actionEvent) throws IOException {
+        toHome();
+    }
+
+
 }

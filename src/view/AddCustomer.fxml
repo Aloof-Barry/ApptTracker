@@ -45,14 +45,14 @@
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" text="Customer ID" textAlignment="CENTER" GridPane.halignment="CENTER" />
                   <Label alignment="CENTER" contentDisplay="CENTER" text="Address" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                  <Label alignment="CENTER" contentDisplay="CENTER" text="Division ID" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" text="Division" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
                   <Label alignment="CENTER" contentDisplay="CENTER" text="Phone" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
                   <Label alignment="CENTER" contentDisplay="CENTER" text="Name" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
                   <Label alignment="CENTER" contentDisplay="CENTER" text="Postal Code" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                   <Label alignment="CENTER" contentDisplay="CENTER" text="Country" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
                   <Button mnemonicParsing="false" onAction="#onSave" text="Save" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                   <Button mnemonicParsing="false" onAction="#onCancel" text="Cancel" GridPane.columnIndex="2" GridPane.rowIndex="8" />
-                  <ChoiceBox fx:id="divisionidFX" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <ChoiceBox fx:id="firstdivFX" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <ChoiceBox fx:id="countryFX" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                   <TextField fx:id="customeridFX" editable="false" promptText="Auto-Gen Disabled" GridPane.columnIndex="1" />
                   <TextField fx:id="addressFX" GridPane.columnIndex="1" GridPane.rowIndex="2" />

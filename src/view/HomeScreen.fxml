@@ -37,9 +37,13 @@
                               </Label>
                               <TableView fx:id="customertableFX" prefHeight="275.0" prefWidth="600.0">
                                 <columns>
-                                  <TableColumn fx:id="customeridFX" prefWidth="108.0" text="ID" />
-                                  <TableColumn fx:id="customernameFX" prefWidth="261.0" text="Name" />
-                                    <TableColumn fx:id="customerphoneFX" minWidth="0.0" prefWidth="230.0" text="Phone Number" />
+                                  <TableColumn fx:id="customeridFX" prefWidth="41.0" text="ID" />
+                                  <TableColumn fx:id="customernameFX" prefWidth="121.0" text="Name" />
+                                    <TableColumn fx:id="addressFX" prefWidth="125.0" text="Address" />
+                                    <TableColumn fx:id="postalcodeFX" text="Postal Code" />
+                                    <TableColumn fx:id="customerphoneFX" minWidth="0.0" prefWidth="91.0" text="Phone Number" />
+                                    <TableColumn fx:id="countryFX" prefWidth="73.0" text="Country" />
+                                    <TableColumn fx:id="divisionFX" prefWidth="68.0" text="Division" />
                                 </columns>
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
@@ -109,16 +113,16 @@
                               </HBox>
                               <TableView fx:id="appointmenttableFX" prefHeight="275.0" prefWidth="600.0">
                                  <columns>
-                                    <TableColumn fx:id="appointmentidFX" prefWidth="37.0" text="Appointment_ID" />
+                                    <TableColumn fx:id="appointmentidFX" prefWidth="37.0" text="Appt ID" />
                                     <TableColumn fx:id="titleFX" prefWidth="59.0" text="Title" />
                                     <TableColumn fx:id="descriptionFX" prefWidth="65.0" text="Description" />
                                     <TableColumn fx:id="locationFX" prefWidth="76.0" text="Location" />
                                     <TableColumn fx:id="contactFX" prefWidth="63.0" text="Contact" />
                                     <TableColumn fx:id="typeFX" prefWidth="61.0" text="Type" />
-                                    <TableColumn fx:id="startFX" prefWidth="76.0" text="Start Date and Time" />
-                                    <TableColumn fx:id="endFX" prefWidth="48.0" text="End Date and Time" />
-                                    <TableColumn fx:id="customerid_appointmentsFX" prefWidth="75.0" text="Customer_ID" />
-                                    <TableColumn fx:id="useridFX" prefWidth="39.0" text="User_ID" />
+                                    <TableColumn fx:id="startFX" prefWidth="76.0" text="Start" />
+                                    <TableColumn fx:id="endFX" prefWidth="48.0" text="End" />
+                                    <TableColumn fx:id="customerid_appointmentsFX" prefWidth="75.0" text="Cust ID" />
+                                    <TableColumn fx:id="useridFX" prefWidth="39.0" text="User ID" />
                                  </columns>
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
@@ -172,6 +176,11 @@
                                  </VBox.margin>
                               </Button>
                               <Button mnemonicParsing="false" text="Button">
+                                 <VBox.margin>
+                                    <Insets top="25.0" />
+                                 </VBox.margin>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#onResetData" text="Reset Database">
                                  <VBox.margin>
                                     <Insets top="25.0" />
                                  </VBox.margin>

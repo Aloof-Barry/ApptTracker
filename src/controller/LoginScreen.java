@@ -16,10 +16,14 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class LoginScreen implements Initializable {
+/**
+ *
+ */
+public class LoginScreen {
 
 
     public TextField usernameFX;
@@ -27,13 +31,18 @@ public class LoginScreen implements Initializable {
     public Label countryFX;
     public AnchorPane anchorpaneFX;
     public Button signinbuttonFX;
+    public Label headerFX;
+    public Label siteFX;
+    //  ResourceBundle rbundle = ResourceBundle.getBundle("helper.lang", Locale.getDefault());
 
 
 
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
+    public void initialize() {
         System.out.println("Login Screen Init");
+
 
 
     }
