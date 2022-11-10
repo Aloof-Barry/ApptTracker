@@ -13,10 +13,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Appointment;
 import model.AppointmentDao;
+import model.Checker;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -80,13 +83,32 @@ public class ModifyAppointment implements Initializable {
     public void toHome() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/HomeScreen.fxml")));
         Stage stage = (Stage) (anchorpaneFX).getScene().getWindow();
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root, 750, 500);
         stage.setTitle("Home Screen");
         stage.setScene(scene);
         stage.show();
     }
 
-    public void onSave(ActionEvent actionEvent) {
+    public void onSave(ActionEvent actionEvent) throws SQLException, IOException {
+        int appointmentID = Integer.parseInt(appointmentidFX.getText());
+        LocalDateTime start = LocalDateTime.of(startdateFX.getValue(), LocalTime.parse(starttimeFX.getValue().toString()));
+        LocalDateTime end = LocalDateTime.of(enddateFX.getValue(), LocalTime.parse(endtimeFX.getValue().toString()));
+
+
+        Appointment newAppointment = new Appointment(appointmentID, titleFX.getText(), descriptionFX.getText(), locationFX.getText(),
+                (String) contactFX.getValue(), typeFX.getText(), start, end, Integer.parseInt(customeridFX.getValue().toString()), Integer.parseInt(useridFX.getValue().toString()));
+
+
+        if(Checker.workDays(newAppointment)){
+            return;
+        }
+        if(Checker.overlap(newAppointment)){
+            return;
+        }
+
+        AppointmentDao.updateAppointment(newAppointment);
+        toHome();
+
     }
 
     public void onClose(ActionEvent actionEvent) throws IOException {

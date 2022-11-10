@@ -61,14 +61,30 @@ public class AppointmentDao {
         return allAppointments;
     }
 
-    public static void setAllAppointments(){
+    public static void setAllAppointments(int i) throws SQLException {
+
         try{
+            String filter = null;
+            switch(i) {
+                case 0:
+                    filter = "";
+                    break;
+                case 1:
+                    filter = "WHERE month(Start) = month(now())";
+                    break;
+                case 2:
+                    filter = "WHERE week(Start) = week(now())";
+                    break;
+            }
+
             allAppointments.clear();
             String sql = "SELECT a.Appointment_ID, a.Title, a.Description, a.Location, c.Contact_Name, a.Type, a.Start, a.End, a.User_ID, a.Customer_ID\n" +
                     "FROM client_schedule.appointments AS a\n" +
-                    "JOIN client_schedule.contacts AS c ON a.Contact_ID = c.Contact_ID\n";
+                    "JOIN client_schedule.contacts AS c ON a.Contact_ID = c.Contact_ID\n" +
+                    filter;
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
+            System.out.println(sql);
 
             while(rs.next()){
                 int appointmentID = rs.getInt("Appointment_ID");
@@ -82,13 +98,13 @@ public class AppointmentDao {
                 int userID = rs.getInt("User_ID");
                 int customerID = rs.getInt("Customer_ID");
 
-                LocalDateTime start = startTS.toLocalDateTime();
-                LocalDateTime end = endTS.toLocalDateTime();
+                LocalDateTime start = Checker.utcToLocal(startTS.toLocalDateTime());
+                LocalDateTime end = Checker.utcToLocal(endTS.toLocalDateTime());
 
                 Appointment appointment = new Appointment(appointmentID, title, description, location, contact, type,
                         start, end, customerID, userID);
                 addAppointment(appointment);
-                System.out.println(appointment);
+
             }
 
         } catch (SQLException e) {
@@ -105,13 +121,14 @@ public class AppointmentDao {
             String sql = "INSERT INTO client_schedule.appointments (Appointment_ID, Title, Description, Location, Type," +
                     " Start, End, Customer_ID, User_ID, Contact_ID)\n" +
                     "VALUES (null,\'" + appointment.getTitle() + "\',\'" + appointment.getDescription() + "\',\'"
-                    + appointment.getLocation() + "\',\'" + appointment.getType() + "\',\'" + Timestamp.valueOf(appointment.getStart()) + "\',\'" + Timestamp.valueOf(appointment.getEnd()) + "\'," +
+                    + appointment.getLocation() + "\',\'" + appointment.getType() + "\',\'" + Timestamp.valueOf(Checker.localToUTC(appointment.getStart())) +
+                    "\',\'" + Timestamp.valueOf(Checker.localToUTC(appointment.getEnd())) + "\'," +
                     appointment.getCustomerId() + "," + appointment.getUserId() + "," + contactToID(appointment.getContact()) + ")";
             System.out.println(sql);
 
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
             ps.execute();
-            System.out.println("Insert Appointment Ran");
+            System.out.println(sql);
         }
         catch (SQLException e){
             e.printStackTrace();
@@ -188,6 +205,48 @@ public class AppointmentDao {
 
         return userList;
     }
+
+    public static void updateAppointment(Appointment appointment) throws SQLException {
+        String sql = "UPDATE client_schedule.appointments\n" +
+                "SET Appointment_ID = " + appointment.getAppointmentId() + ", Title = \'" + appointment.getTitle() +
+                "\', Description = \'" + appointment.getDescription() + "\', Location = \'" + appointment.getLocation() +
+                "\', Type = \'" + appointment.getType() + "\', Start = \'" + Timestamp.valueOf(Checker.localToUTC(appointment.getStart())) +
+                "\', End = \'"+ Timestamp.valueOf(Checker.localToUTC(appointment.getEnd())) + "\', Customer_ID = " + appointment.getCustomerId() +
+                ", User_ID = " + appointment.getUserId() + ", Contact_ID = " + contactToID(appointment.getContact()) + "\n" +
+                "WHERE Appointment_ID = " + appointment.getAppointmentId();
+        System.out.println(sql);
+
+
+        PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+        ps.execute();
+
+    }
+
+    public static void deleteAppointment(Appointment appointment) throws SQLException {
+        String sql = "DELETE FROM client_schedule.appointments\n" +
+                "WHERE Appointment_ID =?";
+
+        PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+        ps.setString(1, Integer.toString(appointment.getAppointmentId()));
+        System.out.println(ps);
+        ps.execute();
+
+    }
+
+    public static void deleteCustAppts(Customer customer) throws SQLException {
+        String sql = "DELETE FROM client_schedule.appointments\n" +
+                "WHERE Customer_ID =?";
+
+        PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+        ps.setString(1, Integer.toString(customer.getCustomerId()));
+        System.out.println(ps);
+        ps.execute();
+
+    }
+
+
+
+
 }
 
 

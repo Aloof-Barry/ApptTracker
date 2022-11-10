@@ -50,7 +50,7 @@ public class LoginScreen {
     public void onSignIn(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/HomeScreen.fxml")));
         Stage stage = (Stage) (anchorpaneFX).getScene().getWindow();
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root, 750, 500);
         stage.setTitle("Home Screen");
         stage.setScene(scene);
         stage.show();

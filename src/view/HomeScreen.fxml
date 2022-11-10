@@ -17,15 +17,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorpaneFX" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeScreen">
+<AnchorPane fx:id="anchorpaneFX" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeScreen">
    <children>
-      <TabPane layoutY="-1.0" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutY="-1.0" prefHeight="500.0" prefWidth="750.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab fx:id="ctabFX" text="Customers">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <VBox alignment="TOP_CENTER" prefHeight="372.0" prefWidth="600.0">
+                        <VBox alignment="TOP_CENTER" prefHeight="475.0" prefWidth="750.0">
                            <children>
                               <Label text="Customers">
                                  <font>
@@ -35,15 +35,15 @@
                                     <Insets bottom="5.0" top="10.0" />
                                  </VBox.margin>
                               </Label>
-                              <TableView fx:id="customertableFX" prefHeight="275.0" prefWidth="600.0">
+                              <TableView fx:id="customertableFX" prefHeight="350.0" prefWidth="750.0">
                                 <columns>
-                                  <TableColumn fx:id="customeridFX" prefWidth="41.0" text="ID" />
-                                  <TableColumn fx:id="customernameFX" prefWidth="121.0" text="Name" />
-                                    <TableColumn fx:id="addressFX" prefWidth="125.0" text="Address" />
-                                    <TableColumn fx:id="postalcodeFX" text="Postal Code" />
-                                    <TableColumn fx:id="customerphoneFX" minWidth="0.0" prefWidth="91.0" text="Phone Number" />
-                                    <TableColumn fx:id="countryFX" prefWidth="73.0" text="Country" />
-                                    <TableColumn fx:id="divisionFX" prefWidth="68.0" text="Division" />
+                                  <TableColumn fx:id="customeridFX" prefWidth="46.0" text="ID" />
+                                  <TableColumn fx:id="customernameFX" prefWidth="122.0" text="Name" />
+                                    <TableColumn fx:id="addressFX" prefWidth="178.0" text="Address" />
+                                    <TableColumn fx:id="postalcodeFX" prefWidth="94.0" text="Postal Code" />
+                                    <TableColumn fx:id="customerphoneFX" minWidth="0.0" prefWidth="108.0" text="Phone Number" />
+                                    <TableColumn fx:id="countryFX" prefWidth="88.0" text="Country" />
+                                    <TableColumn fx:id="divisionFX" prefWidth="112.0" text="Division" />
                                 </columns>
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
@@ -76,7 +76,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <VBox alignment="TOP_CENTER" prefHeight="372.0" prefWidth="600.0">
+                        <VBox alignment="TOP_CENTER" prefHeight="474.0" prefWidth="750.0">
                            <children>
                               <HBox alignment="CENTER" prefHeight="36.0" prefWidth="600.0">
                                  <children>
@@ -111,18 +111,18 @@
                                     </HBox>
                                  </children>
                               </HBox>
-                              <TableView fx:id="appointmenttableFX" prefHeight="275.0" prefWidth="600.0">
+                              <TableView fx:id="appointmenttableFX" prefHeight="350.0" prefWidth="750.0">
                                  <columns>
-                                    <TableColumn fx:id="appointmentidFX" prefWidth="37.0" text="Appt ID" />
-                                    <TableColumn fx:id="titleFX" prefWidth="59.0" text="Title" />
-                                    <TableColumn fx:id="descriptionFX" prefWidth="65.0" text="Description" />
-                                    <TableColumn fx:id="locationFX" prefWidth="76.0" text="Location" />
-                                    <TableColumn fx:id="contactFX" prefWidth="63.0" text="Contact" />
-                                    <TableColumn fx:id="typeFX" prefWidth="61.0" text="Type" />
-                                    <TableColumn fx:id="startFX" prefWidth="76.0" text="Start" />
-                                    <TableColumn fx:id="endFX" prefWidth="48.0" text="End" />
-                                    <TableColumn fx:id="customerid_appointmentsFX" prefWidth="75.0" text="Cust ID" />
-                                    <TableColumn fx:id="useridFX" prefWidth="39.0" text="User ID" />
+                                    <TableColumn fx:id="appointmentidFX" prefWidth="50.0" text="Appt ID" />
+                                    <TableColumn fx:id="titleFX" prefWidth="66.0" text="Title" />
+                                    <TableColumn fx:id="descriptionFX" prefWidth="78.0" text="Description" />
+                                    <TableColumn fx:id="locationFX" prefWidth="70.0" text="Location" />
+                                    <TableColumn fx:id="contactFX" prefWidth="75.0" text="Contact" />
+                                    <TableColumn fx:id="typeFX" prefWidth="65.0" text="Type" />
+                                    <TableColumn fx:id="startFX" prefWidth="135.0" text="Start" />
+                                    <TableColumn fx:id="endFX" prefWidth="118.0" text="End" />
+                                    <TableColumn fx:id="customerid_appointmentsFX" prefWidth="45.0" text="Cust ID" />
+                                    <TableColumn fx:id="useridFX" prefWidth="47.0" text="User ID" />
                                  </columns>
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
@@ -155,17 +155,17 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <VBox alignment="TOP_CENTER" prefHeight="372.0" prefWidth="600.0">
+                        <VBox alignment="TOP_CENTER" prefHeight="472.0" prefWidth="750.0">
                            <children>
                               <Label text="Reports">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets top="10.0" />
+                                    <Insets top="25.0" />
                                  </VBox.margin>
                               </Label>
-                              <Button mnemonicParsing="false" text="Report 1">
+                              <Button mnemonicParsing="false" text="Appointments by Month and Type">
                                  <VBox.margin>
                                     <Insets top="25.0" />
                                  </VBox.margin>

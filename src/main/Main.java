@@ -6,10 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.AppointmentDao;
-import model.CustomerDao;
-import model.Logger;
-import model.Report;
+import model.*;
 
 import java.util.Locale;
 import java.util.Objects;
@@ -38,6 +35,7 @@ public class Main extends Application{
         Report.getReport();
         AppointmentDao.getAppointmentDao();
         CustomerDao.getCustomerDao();
+        Checker.getChecker();
 
         // Test the French internat.
         //      Locale myLocale = Locale.FRENCH;
@@ -51,7 +49,7 @@ public class Main extends Application{
 
         Parent root = FXMLLoader.load(getClass().getResource("/view/LoginScreen.fxml"), rBundle);
         stage.setTitle("Login");
-        stage.setScene(new Scene(root, 600, 500));
+        stage.setScene(new Scene(root, 750, 500));
         stage.show();
 
 

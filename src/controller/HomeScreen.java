@@ -17,6 +17,7 @@ import model.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -48,6 +49,8 @@ public class HomeScreen implements Initializable {
     public TableColumn countryFX;
     public TableColumn divisionFX;
 
+    public int toggle = 0;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -62,7 +65,11 @@ public class HomeScreen implements Initializable {
         countryFX.setCellValueFactory(new PropertyValueFactory<>("country"));
         divisionFX.setCellValueFactory(new PropertyValueFactory<>("division"));
 
-        AppointmentDao.setAllAppointments();
+        try {
+            AppointmentDao.setAllAppointments(toggle);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         appointmenttableFX.setItems(AppointmentDao.getAllAppointments());
         appointmentidFX.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
         titleFX.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -85,7 +92,7 @@ public class HomeScreen implements Initializable {
     public void onAddCustomer(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AddCustomer.fxml")));
         Stage stage = (Stage) (anchorpaneFX).getScene().getWindow();
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root, 750, 500);
         stage.setTitle("Add Customer");
         stage.setScene(scene);
         stage.show();
@@ -100,39 +107,43 @@ public class HomeScreen implements Initializable {
 
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/ModifyCustomer.fxml")));
         Stage stage = (Stage) (anchorpaneFX).getScene().getWindow();
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root, 750, 500);
         stage.setTitle("Modify Customer");
         stage.setScene(scene);
         stage.show();
     }
 
-    public void onDeleteCustomer(ActionEvent actionEvent) {
-    }
 
     public void onLogout(ActionEvent actionEvent) throws IOException {
         Locale myLocale = Locale.getDefault();
         ResourceBundle rBundle = ResourceBundle.getBundle("helper.lang", myLocale);
         Parent root = FXMLLoader.load(getClass().getResource("/view/LoginScreen.fxml"), rBundle);
         Stage stage = (Stage) (anchorpaneFX).getScene().getWindow();
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root, 750, 500);
         stage.setTitle("Login");
         stage.setScene(scene);
         stage.show();
     }
 
-    public void onToggleAll(ActionEvent actionEvent) {
+    public void onToggleAll(ActionEvent actionEvent) throws SQLException {
+        toggle = 0;
+        AppointmentDao.setAllAppointments(toggle);
     }
 
-    public void onToggleMonth(ActionEvent actionEvent) {
+    public void onToggleMonth(ActionEvent actionEvent) throws SQLException {
+        toggle = 1;
+        AppointmentDao.setAllAppointments(toggle);
     }
 
-    public void onToggleWeek(ActionEvent actionEvent) {
+    public void onToggleWeek(ActionEvent actionEvent) throws SQLException {
+        toggle = 2;
+        AppointmentDao.setAllAppointments(toggle);
     }
 
     public void onAddAppointment(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/AddAppointment.fxml")));
         Stage stage = (Stage) (anchorpaneFX).getScene().getWindow();
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root, 750, 500);
         stage.setTitle("Add Appointment");
         stage.setScene(scene);
         stage.show();
@@ -147,14 +158,46 @@ public class HomeScreen implements Initializable {
 
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/ModifyAppointment.fxml")));
         Stage stage = (Stage) (anchorpaneFX).getScene().getWindow();
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root, 750, 500);
         stage.setTitle("Modify Appointment");
         stage.setScene(scene);
         stage.show();
     }
 
-    public void onDeleteAppointment(ActionEvent actionEvent) {
+    public void onDeleteAppointment(ActionEvent actionEvent) throws SQLException {
+        Appointment appointment = (Appointment) appointmenttableFX.getSelectionModel().getSelectedItem();
+        if (appointment == null) {
+            return;
+        }
+        AppointmentDao.deleteAppointment(appointment);
+        AppointmentDao.setAllAppointments(toggle);
+        Checker.deleteApptNotification(appointment);
     }
+
+    public void onDeleteCustomer(ActionEvent actionEvent) throws SQLException {
+        Customer customer = (Customer) customertableFX.getSelectionModel().getSelectedItem();
+        if (customer == null) {
+            return;
+        }
+
+        if (Checker.checkCustKeyRes(customer)){
+            System.out.println("TRUE Foriegn Key Restraint Present");
+
+            AppointmentDao.deleteCustAppts(customer);
+            AppointmentDao.setAllAppointments(toggle);
+            System.out.println("deleted appts with Customer_ID: " + customer.getCustomerId());
+
+        } else {System.out.println("FALSE: FKR NOT present");}
+
+        CustomerDao.deleteCustomer(customer);
+        CustomerDao.setAllCustomers();
+        Checker.deleteCustNotification();
+
+
+    }
+
+
+
 
     public void onResetData(ActionEvent actionEvent) {
         Report.resetData();

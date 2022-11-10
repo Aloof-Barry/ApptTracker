@@ -63,6 +63,7 @@ public class CustomerDao implements DAOInterface{
                     "FROM client_schedule.customers AS c\n" +
                     "JOIN client_schedule.first_level_divisions AS f ON f.Division_ID = c.Division_ID\n" +
                     "JOIN client_schedule.countries AS n ON n.Country_ID = f.Country_ID";
+            System.out.println(sql);
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
 
             ResultSet rs = ps.executeQuery();
@@ -77,7 +78,6 @@ public class CustomerDao implements DAOInterface{
                 int divisionId = rs.getInt("Division_ID");
                 Customer customer = new Customer(customerId, name, address, postalCode, phone, country, divisionId);
                 addCustomer(customer);
-                System.out.println(customer);
             }
 
         } catch (SQLException e){
@@ -199,8 +199,16 @@ public class CustomerDao implements DAOInterface{
 
         return divisionIDList.get(0);
 
+    }
 
+    public static void deleteCustomer(Customer customer) throws SQLException {
+        String sql = "DELETE FROM client_schedule.customers\n" +
+                "WHERE Customer_ID =?";
 
+        PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+        ps.setString(1, Integer.toString(customer.getCustomerId()));
+        System.out.println(ps);
+        ps.execute();
 
     }
 

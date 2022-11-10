@@ -11,6 +11,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import model.Checker;
 import model.Customer;
 import model.CustomerDao;
 
@@ -66,7 +67,7 @@ public class AddCustomer implements Initializable {
     public void toHome() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/HomeScreen.fxml")));
         Stage stage = (Stage) (anchorpaneFX).getScene().getWindow();
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root, 750, 500);
         stage.setTitle("Home Screen");
         stage.setScene(scene);
         stage.show();
@@ -91,8 +92,12 @@ public class AddCustomer implements Initializable {
         int divisionId = CustomerDao.firstDivToID((String) firstdivFX.getValue());
 
         Customer customer = new Customer(customerId, name, address, postalCode, phone, country, divisionId);
-        CustomerDao.insertCustomer(customer);
+        if (Checker.customerInputVal(customer)){
+            return;
+        }
 
+
+        CustomerDao.insertCustomer(customer);
         toHome();
     }
 

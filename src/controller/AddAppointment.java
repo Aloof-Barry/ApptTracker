@@ -14,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Appointment;
 import model.AppointmentDao;
+import model.Checker;
 import model.CustomerDao;
 
 import java.io.IOException;
@@ -75,13 +76,13 @@ public class AddAppointment implements Initializable {
     public void toHome() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/HomeScreen.fxml")));
         Stage stage = (Stage) (anchorpaneFX).getScene().getWindow();
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root, 750, 500);
         stage.setTitle("Home Screen");
         stage.setScene(scene);
         stage.show();
     }
 
-    public void onSave(ActionEvent actionEvent) throws IOException {
+    public void onSave(ActionEvent actionEvent) throws IOException, SQLException {
         int appointmentID = 222;
         String title = titleFX.getText();
         String description = descriptionFX.getText();
@@ -100,6 +101,16 @@ public class AddAppointment implements Initializable {
 
         Appointment appointment = new Appointment(appointmentID, title, description, location, contact, type, start, end,
                 customerID, userID);
+
+        if(Checker.workDays(appointment)){
+            return;
+        }
+        if(Checker.overlap(appointment)){
+            return;
+        }
+
+
+
         AppointmentDao.insertAppointment(appointment);
         toHome();
 

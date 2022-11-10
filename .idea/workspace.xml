@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ece3913-6024-4ea3-87b4-4cb381f1962b" name="Changes" comment="&quot;1st&quot;">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_8_0_29.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/helper/JDBC.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/helper/lang_en.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/helper/lang_fr.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/Appointment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/DAOInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/Checker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ApptTracker.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ApptTracker.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/AddAppointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/AddAppointment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/AddCustomer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/AddCustomer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/HomeScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/HomeScreen.java" afterDir="false" />
@@ -20,13 +12,9 @@
       <change beforePath="$PROJECT_DIR$/src/controller/ModifyCustomer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ModifyCustomer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/AppointmentDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/AppointmentDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Customer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/CustomerDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/CustomerDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Report.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/AddCustomer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/AddCustomer.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/DAOInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/DAOInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/HomeScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/HomeScreen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/LoginScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/LoginScreen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/ModifyCustomer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ModifyCustomer.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,18 +42,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/cruse/AppData/Local/SceneBuilder/SceneBuilder.exe",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "advanced.settings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/cruse/AppData/Local/SceneBuilder/SceneBuilder.exe&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../../../../Program Files/Java/jdk-18.0.2.1" />
@@ -94,7 +82,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659394723282</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="&quot;1st&quot;">
+      <created>1667575219453</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1667575219453</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
