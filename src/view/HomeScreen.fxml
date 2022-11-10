@@ -165,7 +165,7 @@
                                     <Insets top="25.0" />
                                  </VBox.margin>
                               </Label>
-                              <Button mnemonicParsing="false" text="Appointments by Month and Type">
+                              <Button mnemonicParsing="false" onAction="#onReportOne" text="Appointments by Month and Type">
                                  <VBox.margin>
                                     <Insets top="25.0" />
                                  </VBox.margin>

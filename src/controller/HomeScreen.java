@@ -196,6 +196,15 @@ public class HomeScreen implements Initializable {
 
     }
 
+    public void onReportOne(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/ReportOne.fxml")));
+        Stage stage = (Stage) (anchorpaneFX).getScene().getWindow();
+        Scene scene = new Scene(root, 750, 500);
+        stage.setTitle("Report One");
+        stage.setScene(scene);
+        stage.show();
+    }
+
 
 
 

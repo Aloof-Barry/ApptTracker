@@ -37,32 +37,58 @@ public class AppointmentDao {
         return appointmentDao;
     }
 
+    /***
+     * Field
+     */
     public static final List<String> listAllTimes = Arrays.asList("01:00", "02:00", "03:00", "04:00", "05:00", "06:00",
             "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00",
             "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00", "24:00");
 
+    /***
+     * Field
+     */
     public static final ObservableList<String> allTimes = FXCollections.observableArrayList(listAllTimes);
 
+    /***
+     * Field
+     */
+    public static ObservableList<MonthType> monthTypeList = FXCollections.observableArrayList();
+
+    /***
+     * Field
+     */
+    public static ObservableList<Appointment> allAppointments = FXCollections.observableArrayList();
+
+    /***
+     * Getter
+     * @return static field list allTimes
+     */
     public static List getAllTimes(){
         return allTimes;
     }
 
-
     /***
-     * List to hold every appointment in the database program side
+     * Getter
+     * @return static field allAppointments
      */
-    public static ObservableList<Appointment> allAppointments = FXCollections.observableArrayList();
-
-    public static void addAppointment(Appointment appointment){
-        allAppointments.add(appointment);
-    }
-
     public static ObservableList<Appointment> getAllAppointments(){
         return allAppointments;
     }
 
-    public static void setAllAppointments(int i) throws SQLException {
+    /***
+     * Method for setter
+     * @param appointment is added to the static field list allAppointments
+     */
+    public static void addAppointment(Appointment appointment){
+        allAppointments.add(appointment);
+    }
 
+    /***
+     * Setter for static field list allAppointments
+     * @param i Integer between 0 and 2 that identifies the state of the all, month, and week toggle for appointments table
+     * @throws SQLException
+     */
+    public static void setAllAppointments(int i) throws SQLException {
         try{
             String filter = null;
             switch(i) {
@@ -76,7 +102,6 @@ public class AppointmentDao {
                     filter = "WHERE week(Start) = week(now())";
                     break;
             }
-
             allAppointments.clear();
             String sql = "SELECT a.Appointment_ID, a.Title, a.Description, a.Location, c.Contact_Name, a.Type, a.Start, a.End, a.User_ID, a.Customer_ID\n" +
                     "FROM client_schedule.appointments AS a\n" +
@@ -85,7 +110,6 @@ public class AppointmentDao {
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             System.out.println(sql);
-
             while(rs.next()){
                 int appointmentID = rs.getInt("Appointment_ID");
                 String title =  rs.getString("Title");
@@ -104,20 +128,15 @@ public class AppointmentDao {
                 Appointment appointment = new Appointment(appointmentID, title, description, location, contact, type,
                         start, end, customerID, userID);
                 addAppointment(appointment);
-
             }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 
     public static void insertAppointment(Appointment appointment){
-
         try{
-
             String sql = "INSERT INTO client_schedule.appointments (Appointment_ID, Title, Description, Location, Type," +
                     " Start, End, Customer_ID, User_ID, Contact_ID)\n" +
                     "VALUES (null,\'" + appointment.getTitle() + "\',\'" + appointment.getDescription() + "\',\'"
@@ -125,7 +144,6 @@ public class AppointmentDao {
                     "\',\'" + Timestamp.valueOf(Checker.localToUTC(appointment.getEnd())) + "\'," +
                     appointment.getCustomerId() + "," + appointment.getUserId() + "," + contactToID(appointment.getContact()) + ")";
             System.out.println(sql);
-
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
             ps.execute();
             System.out.println(sql);
@@ -133,7 +151,6 @@ public class AppointmentDao {
         catch (SQLException e){
             e.printStackTrace();
         }
-
     }
 
     public static int contactToID(String contact) throws SQLException {
@@ -144,7 +161,6 @@ public class AppointmentDao {
         ObservableList<Integer> contactIDList = FXCollections.observableArrayList();
         while(rs.next()){
             int conID =  rs.getInt("Contact_ID");
-
             contactIDList.add(conID);
         }
         return contactIDList.get(0);
@@ -243,6 +259,8 @@ public class AppointmentDao {
         ps.execute();
 
     }
+
+
 
 
 
