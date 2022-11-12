@@ -211,4 +211,23 @@ public class HomeScreen implements Initializable {
     public void onResetData(ActionEvent actionEvent) {
         Report.resetData();
     }
+
+    public void onReportTwo(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/ReportTwo.fxml")));
+        Stage stage = (Stage) (anchorpaneFX).getScene().getWindow();
+        Scene scene = new Scene(root, 750, 500);
+        stage.setTitle("Report One");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void onReportThree(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/ReportThree.fxml")));
+        Stage stage = (Stage) (anchorpaneFX).getScene().getWindow();
+        Scene scene = new Scene(root, 750, 500);
+        stage.setTitle("Report One");
+        stage.setScene(scene);
+        stage.show();
+    }
+
 }

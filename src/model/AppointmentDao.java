@@ -135,6 +135,35 @@ public class AppointmentDao {
         }
     }
 
+    public static ObservableList<MonthType> getMonthTypeList(){
+        return monthTypeList;
+    }
+
+    public static void addMonthType(MonthType monthType){monthTypeList.add(monthType);}
+
+    public static void setMonthTypeList() throws SQLException {
+        String  sql = "SELECT MONTH(Start) AS Month, Type, COUNT(Appointment_ID) AS Total\n" +
+                "FROM client_schedule.appointments\n" +
+                "GROUP BY MONTH(Start), Type\n" +
+                "ORDER BY MONTH(Start), Type";
+        PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        System.out.println(sql);
+        while(rs.next()){
+            String month = rs.getString("Month");
+            String type =  rs.getString("Type");
+            int total = rs.getInt("Total");
+
+            MonthType monthType = new MonthType(month, type, total);
+            monthType.setMonth(monthType.getMonth());
+
+
+            addMonthType(monthType);
+
+        }
+
+    }
+
     public static void insertAppointment(Appointment appointment){
         try{
             String sql = "INSERT INTO client_schedule.appointments (Appointment_ID, Title, Description, Location, Type," +
@@ -259,6 +288,106 @@ public class AppointmentDao {
         ps.execute();
 
     }
+
+    public static ObservableList<Appointment> selectSchedule(String contactChoice) throws SQLException {
+        ObservableList<Appointment> schedule = FXCollections.observableArrayList();
+        String sql = "SELECT a.Appointment_ID, a.Title, a.Description, a.Location, c.Contact_Name, a.Type, a.Start, a.End, a.User_ID, a.Customer_ID\n" +
+                "FROM client_schedule.appointments AS a\n" +
+                "JOIN client_schedule.contacts AS c ON a.Contact_ID = c.Contact_ID\n" +
+                "WHERE Contact_Name =? ORDER BY Start";
+        PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+        ps.setString(1, contactChoice);
+        ResultSet rs = ps.executeQuery();
+        System.out.println(sql);
+
+        while(rs.next()){
+            int appointmentID = rs.getInt("Appointment_ID");
+            String title =  rs.getString("Title");
+            String description = rs.getString("Description");
+            String location = rs.getString("Location");
+            String contact = rs.getString("Contact_Name");
+            String type = rs.getString("Type");
+            Timestamp startTS = rs.getTimestamp("Start");
+            Timestamp endTS = rs.getTimestamp("End");
+            int userID = rs.getInt("User_ID");
+            int customerID = rs.getInt("Customer_ID");
+
+            LocalDateTime start = Checker.utcToLocal(startTS.toLocalDateTime());
+            LocalDateTime end = Checker.utcToLocal(endTS.toLocalDateTime());
+
+            Appointment appointment = new Appointment(appointmentID, title, description, location, contact, type,
+                    start, end, customerID, userID);
+            schedule.add(appointment);
+        }
+        return schedule;
+    }
+
+    public static ObservableList selectCustomers() throws SQLException {
+
+        ObservableList<String> customerList = FXCollections.observableArrayList();
+
+        String sql = "SELECT Customer_Name\n" +
+                "FROM client_schedule.customers";
+        PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+
+        while(rs.next()){
+            String customer =  rs.getString("Customer_Name");
+            System.out.println("append " + customer + " to list");
+            customerList.add(customer);
+        }
+
+        return customerList;
+    }
+
+    public static ObservableList<Appointment> customerSchedule(String customer) throws SQLException {
+        ObservableList<Appointment> schedule = FXCollections.observableArrayList();
+        String sql = "SELECT a.Appointment_ID, a.Title, a.Description, a.Location, c.Contact_Name, a.Type, a.Start, a.End, a.User_ID, a.Customer_ID\n" +
+                "FROM client_schedule.appointments AS a\n" +
+                "JOIN client_schedule.contacts AS c ON a.Contact_ID = c.Contact_ID\n" +
+
+                "WHERE Customer_ID =? ORDER BY Start";
+        PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+        ps.setString(1, Integer.toString(customerToID(customer)));
+        ResultSet rs = ps.executeQuery();
+        System.out.println(sql);
+
+        while(rs.next()){
+            int appointmentID = rs.getInt("Appointment_ID");
+            String title =  rs.getString("Title");
+            String description = rs.getString("Description");
+            String location = rs.getString("Location");
+            String contact = rs.getString("Contact_Name");
+            String type = rs.getString("Type");
+            Timestamp startTS = rs.getTimestamp("Start");
+            Timestamp endTS = rs.getTimestamp("End");
+            int userID = rs.getInt("User_ID");
+            int customerID = rs.getInt("Customer_ID");
+
+            LocalDateTime start = Checker.utcToLocal(startTS.toLocalDateTime());
+            LocalDateTime end = Checker.utcToLocal(endTS.toLocalDateTime());
+
+            Appointment appointment = new Appointment(appointmentID, title, description, location, contact, type,
+                    start, end, customerID, userID);
+            schedule.add(appointment);
+        }
+        return schedule;
+    }
+
+    public static int customerToID(String customer) throws SQLException {
+        String sql = "SELECT Customer_ID FROM client_schedule.customers WHERE Customer_Name =?";
+        PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+        ps.setString(1, customer);
+        ResultSet rs = ps.executeQuery();
+        ObservableList<Integer> customerIDList = FXCollections.observableArrayList();
+        while(rs.next()){
+            int cusID =  rs.getInt("Customer_ID");
+            customerIDList.add(cusID);
+        }
+        return customerIDList.get(0);
+    }
+
+
 
 
 

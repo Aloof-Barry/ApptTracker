@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,10 +12,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import model.AppointmentDao;
 import model.CustomerDao;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -32,7 +35,13 @@ public class ReportOne implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        tableFX.setItems(CustomerDao.getAllCustomers());
+        AppointmentDao.monthTypeList.clear();
+        try {
+            AppointmentDao.setMonthTypeList();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        tableFX.setItems(AppointmentDao.getMonthTypeList());
         monthFX.setCellValueFactory(new PropertyValueFactory<>("month"));
         typeFX.setCellValueFactory(new PropertyValueFactory<>("type"));
         totalFX.setCellValueFactory(new PropertyValueFactory<>("total"));

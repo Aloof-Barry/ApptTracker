@@ -170,12 +170,12 @@
                                     <Insets top="25.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button mnemonicParsing="false" text="Button">
+                              <Button mnemonicParsing="false" onAction="#onReportTwo" text="Contact's Schedule">
                                  <VBox.margin>
                                     <Insets top="25.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button mnemonicParsing="false" text="Button">
+                              <Button mnemonicParsing="false" onAction="#onReportThree" text="Customer's Schedule">
                                  <VBox.margin>
                                     <Insets top="25.0" />
                                  </VBox.margin>

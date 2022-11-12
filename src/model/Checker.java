@@ -152,12 +152,13 @@ public class Checker {
             ends.add(utcToLocal(end));
         }
 
+        /*
         System.out.println("-------------------\n" +
                 "Overlap Debug\n" +
                 "--------------------\n" +
                 "Start Times : " + appointment.getStart().toLocalTime() + "   " + starts.get(0).toLocalTime() +"\n" +
                 "End Times : " + appointment.getEnd().toLocalTime() + "   " + ends.get(0).toLocalTime());
-
+        */
 
 
         if(starts.size() < 1){
@@ -178,7 +179,8 @@ public class Checker {
             if(appointment.getStart().isAfter(starts.get(i)) && appointment.getStart().isBefore(ends.get(i))
             || appointment.getEnd().isAfter(starts.get(i)) && appointment.getEnd().isBefore(ends.get(i))
             || appointment.getStart().isEqual(starts.get(i))
-            || appointment.getEnd().isEqual(ends.get(i))) {
+            || appointment.getEnd().isEqual(ends.get(i))
+            || starts.get(i).isAfter(appointment.getStart()) && starts.get(i).isBefore(appointment.getEnd())){
 
                 Alert errorA = new Alert(Alert.AlertType.ERROR);
                 errorA.setTitle("ERROR");
