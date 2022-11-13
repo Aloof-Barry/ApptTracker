@@ -174,7 +174,6 @@ public class Checker {
             return true;
 
         }
-
         for (int i = 0; i < starts.size(); i++ ){
             if(appointment.getStart().isAfter(starts.get(i)) && appointment.getStart().isBefore(ends.get(i))
             || appointment.getEnd().isAfter(starts.get(i)) && appointment.getEnd().isBefore(ends.get(i))
@@ -188,25 +187,31 @@ public class Checker {
                 errorA.setContentText("Customer appointments must not overlap.");
                 errorA.showAndWait();
                 return true;
-
-
-
-
         } else {continue;}
         }
-
         return false;
 
-
-
-
-
-
-
-
-
-
     }
+
+    public static void alertFifteen(Boolean val, ObservableList<Appointment> schedule){
+        if (val){
+            Appointment appointment = schedule.get(0);
+            Alert errorA = new Alert(Alert.AlertType.INFORMATION);
+            errorA.setTitle("Welcome");
+            errorA.setHeaderText("Appointment Scheduled Within 15 Minutes");
+            errorA.setContentText("Appointment ID: " + appointment.getAppointmentId() + "\n Start: " + AppointmentDao.myFormat(appointment.getStart()));
+            errorA.showAndWait();
+
+        } else {
+            Alert errorB = new Alert(Alert.AlertType.INFORMATION);
+            errorB.setTitle("Welcome");
+            errorB.setHeaderText("No Appointments in the Next 15 Minutes");
+            errorB.setContentText("");
+            errorB.showAndWait();
+        }
+    }
+
+
 
 
 

@@ -67,9 +67,6 @@ public class ReportThree implements Initializable {
             contactFX.setCellValueFactory(new PropertyValueFactory<>("contact"));
 
 
-
-
-
         });
 
     }

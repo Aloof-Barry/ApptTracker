@@ -55,6 +55,9 @@ public class HomeScreen implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("Main Screen initialized");
+
+
+
         CustomerDao.setAllCustomers();
         customertableFX.setItems(CustomerDao.getAllCustomers());
         customeridFX.setCellValueFactory(new PropertyValueFactory<>("customerId"));

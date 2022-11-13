@@ -1,5 +1,6 @@
 package main;
 
+import controller.LoginScreen;
 import helper.JDBC;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -38,17 +39,20 @@ public class Main extends Application{
         Checker.getChecker();
 
         // Test the French internat.
-        //      Locale myLocale = Locale.FRENCH;
+        Locale fra = Locale.FRENCH;
 
         // assign the correct ResourceBundle
 
-        Locale myLocale = Locale.getDefault();
-        ResourceBundle rBundle = ResourceBundle.getBundle("helper.lang", myLocale);
+        Locale def = Locale.getDefault();
+
+
+        ResourceBundle rBundle = ResourceBundle.getBundle("helper.lang", def);
+        LoginScreen.rbundle = rBundle;
 
         // Init LoginScreen
 
         Parent root = FXMLLoader.load(getClass().getResource("/view/LoginScreen.fxml"), rBundle);
-        stage.setTitle("Login");
+        stage.setTitle(rBundle.getString("signin"));
         stage.setScene(new Scene(root, 750, 500));
         stage.show();
 
@@ -65,4 +69,3 @@ public class Main extends Application{
     }
 }
 
-// Adding comment to see if github is working

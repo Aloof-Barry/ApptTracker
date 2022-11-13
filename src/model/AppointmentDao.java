@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -58,6 +59,9 @@ public class AppointmentDao {
      * Field
      */
     public static ObservableList<Appointment> allAppointments = FXCollections.observableArrayList();
+
+
+
 
     /***
      * Getter
@@ -386,6 +390,13 @@ public class AppointmentDao {
         }
         return customerIDList.get(0);
     }
+
+    public static String myFormat(LocalDateTime ldt){
+        DateTimeFormatter formatStyle = DateTimeFormatter.ofPattern("dd-MM-yyy HH:mm");
+        return ldt.format(formatStyle);
+    }
+
+
 
 
 
