@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 public class Checker {
     /***
@@ -195,6 +197,7 @@ public class Checker {
 
     public static void alertFifteen(Boolean val, ObservableList<Appointment> schedule){
         if (val){
+            System.out.println("alert15 True");
             Appointment appointment = schedule.get(0);
             Alert errorA = new Alert(Alert.AlertType.INFORMATION);
             errorA.setTitle("Welcome");
@@ -203,12 +206,20 @@ public class Checker {
             errorA.showAndWait();
 
         } else {
+            System.out.println("alert15 False");
             Alert errorB = new Alert(Alert.AlertType.INFORMATION);
             errorB.setTitle("Welcome");
             errorB.setHeaderText("No Appointments in the Next 15 Minutes");
             errorB.setContentText("");
             errorB.showAndWait();
         }
+    }
+
+    public static String myTimeFormat(LocalDateTime ldt){
+        String easyDateTime = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
+                .format(ldt);
+        return easyDateTime;
+
     }
 
 

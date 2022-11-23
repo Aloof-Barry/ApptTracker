@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6ece3913-6024-4ea3-87b4-4cb381f1962b" name="Changes" comment="All 3 reports completed. Moving on the Login Screen requirements.">
+    <list default="true" id="6ece3913-6024-4ea3-87b4-4cb381f1962b" name="Changes" comment="Login Screen Complete">
+      <change afterPath="$PROJECT_DIR$/login_activity.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/HomeScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/HomeScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/LoginScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/LoginScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/ReportThree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ReportThree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helper/lang_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/helper/lang_en.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helper/lang_fr.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/helper/lang_fr.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/AppointmentDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/AppointmentDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Checker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Checker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Logger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/LoginScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/LoginScreen.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +102,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668295810079</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Login Screen Complete">
+      <created>1668316497477</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1668316497477</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -127,7 +128,8 @@
     <MESSAGE value="added scheduling input validation and alerts" />
     <MESSAGE value="Started on 1st report&#10;Controller complete&#10;abstract class MonthType complete&#10;populating table in progress" />
     <MESSAGE value="All 3 reports completed. Moving on the Login Screen requirements." />
-    <option name="LAST_COMMIT_MESSAGE" value="All 3 reports completed. Moving on the Login Screen requirements." />
+    <MESSAGE value="Login Screen Complete" />
+    <option name="LAST_COMMIT_MESSAGE" value="Login Screen Complete" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
