@@ -104,8 +104,8 @@ public class ReportTwo implements Initializable {
             titleFX.setCellValueFactory(new PropertyValueFactory<>("title"));
             typeFX.setCellValueFactory(new PropertyValueFactory<>("type"));
             descriptionFX.setCellValueFactory(new PropertyValueFactory<>("description"));
-            startFX.setCellValueFactory(new PropertyValueFactory<>("start"));
-            endFX.setCellValueFactory(new PropertyValueFactory<>("end"));
+            startFX.setCellValueFactory(new PropertyValueFactory<>("formattedStart"));
+            endFX.setCellValueFactory(new PropertyValueFactory<>("formattedEnd"));
             customeridFX.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         });
     }

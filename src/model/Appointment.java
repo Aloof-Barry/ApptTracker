@@ -251,8 +251,16 @@ public class Appointment {
         this.userId = userId;
     }
 
+    /***
+     * Getter
+     * @return formatted start
+     */
     public String getFormattedStart(){return formattedStart;}
 
+    /***
+     * formatted end
+     * @return
+     */
     public String getFormattedEnd(){return formattedEnd;}
 
 }

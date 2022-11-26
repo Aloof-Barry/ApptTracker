@@ -1,30 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6ece3913-6024-4ea3-87b4-4cb381f1962b" name="Changes" comment="All functional requirements met.&#10;&#10;Remaining Tasks:&#10;Comment code and generate Javadoc,&#10;Readme file,&#10;Explain 2 lambdas&#10;Test code">
+    <list default="true" id="6ece3913-6024-4ea3-87b4-4cb381f1962b" name="Changes" comment="Code commented to include LAMBDA expressions&#10;&#10;Remaining Tasks:&#10;Generate JavaDoc&#10;Readme file,&#10;Test code">
+      <change afterPath="$PROJECT_DIR$/ReadMe.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/login_activity.txt" beforeDir="false" afterPath="$PROJECT_DIR$/login_activity.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/AddAppointment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/AddCustomer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/AddCustomer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/HomeScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/HomeScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/LoginScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/LoginScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/ModifyAppointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ModifyAppointment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/ModifyCustomer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ModifyCustomer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/ReportOne.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ReportOne.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/ReportThree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ReportThree.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/ReportTwo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ReportTwo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helper/JDBC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helper/JDBC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Appointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Appointment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/AppointmentDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/AppointmentDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Checker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Checker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/CustomerDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/CustomerDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/DAOInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/DAOInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Logger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/MonthType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/MonthType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Report.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/HomeScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/HomeScreen.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +117,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669221037740</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Code commented to include LAMBDA expressions&#10;&#10;Remaining Tasks:&#10;Generate JavaDoc&#10;Readme file,&#10;Test code">
+      <created>1669482246180</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1669482246180</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -155,7 +145,8 @@
     <MESSAGE value="All 3 reports completed. Moving on the Login Screen requirements." />
     <MESSAGE value="Login Screen Complete" />
     <MESSAGE value="All functional requirements met.&#10;&#10;Remaining Tasks:&#10;Comment code and generate Javadoc,&#10;Readme file,&#10;Explain 2 lambdas&#10;Test code" />
-    <option name="LAST_COMMIT_MESSAGE" value="All functional requirements met.&#10;&#10;Remaining Tasks:&#10;Comment code and generate Javadoc,&#10;Readme file,&#10;Explain 2 lambdas&#10;Test code" />
+    <MESSAGE value="Code commented to include LAMBDA expressions&#10;&#10;Remaining Tasks:&#10;Generate JavaDoc&#10;Readme file,&#10;Test code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Code commented to include LAMBDA expressions&#10;&#10;Remaining Tasks:&#10;Generate JavaDoc&#10;Readme file,&#10;Test code" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
