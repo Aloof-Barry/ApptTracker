@@ -19,19 +19,62 @@ import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/***
+ * Controller Class for the Modify Customer Screen
+ */
 public class ModifyCustomer implements Initializable {
+
+    /***
+     * JavaFX object to represent fields on the user interface
+     */
     public ChoiceBox firstdivFX;
+
+    /***
+     * JavaFX object to represent fields on the user interface
+     */
     public ChoiceBox countryFX;
+
+    /***
+     * JavaFX object to represent fields on the user interface
+     */
     public TextField customeridFX;
+
+    /***
+     * JavaFX object to represent fields on the user interface
+     */
     public TextField addressFX;
+
+    /***
+     * JavaFX object to represent fields on the user interface
+     */
     public TextField nameFX;
+
+    /***
+     * JavaFX object to represent fields on the user interface
+     */
     public TextField postalcodeFX;
+
+    /***
+     * JavaFX object to represent fields on the user interface
+     */
     public TextField phoneFX;
+
+    /***
+     * JavaFX object to represent fields on the user interface
+     */
     public AnchorPane anchorpaneFX;
+
+    /***
+     * JavaFX object to represent fields on the user interface
+     */
     public static Customer currentCustomer;
 
-
-
+    /***
+     * Populates the items in the fields and choice boxes
+     * The Lamba expression is a function that triggers when the Country choice box is changed. The function changes the contents of the Division choice box
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         customeridFX.setText(Integer.toString(currentCustomer.getCustomerId()));
@@ -49,7 +92,6 @@ public class ModifyCustomer implements Initializable {
          *LAMDA block of code to set an action event on Country drop down to change contents of Division ID drop
          * down based on the selected value in Country drop down
          */
-
         countryFX.setOnAction(event -> {
             System.out.println(countryFX.getValue() + " selected from drop down");
 
@@ -72,6 +114,10 @@ public class ModifyCustomer implements Initializable {
         }
     }
 
+    /***
+     * Method for going to the Home Screen
+     * @throws IOException Failed I/O operation
+     */
     public void toHome() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/HomeScreen.fxml")));
         Stage stage = (Stage) (anchorpaneFX).getScene().getWindow();
@@ -81,20 +127,27 @@ public class ModifyCustomer implements Initializable {
         stage.show();
     }
 
+    /***
+     * Save button
+     * Saves the customer, triggers relevant alerts, returns to Home Screen
+     * @param actionEvent passed when save button is pressed on screen
+     * @throws IOException Failed I/O operation
+     * @throws SQLException For database access errors
+     */
     public void onSave(ActionEvent actionEvent) throws SQLException, IOException {
         int customerId = Integer.parseInt(customeridFX.getText());
         Customer newCustomer = new Customer(customerId, nameFX.getText(), addressFX.getText(), postalcodeFX.getText(),
                 phoneFX.getText(), (String) countryFX.getValue(), CustomerDao.firstDivToID((String) firstdivFX.getValue()));
         CustomerDao.updateCustomer(customerId, newCustomer);
-
         toHome();
-
-
     }
 
+    /***
+     * Close button
+     * @param actionEvent passed when closed button is pressed on the screen
+     * @throws IOException Failed I/O operation
+     */
     public void onCancel(ActionEvent actionEvent) throws IOException {
         toHome();
     }
-
-
 }

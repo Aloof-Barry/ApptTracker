@@ -12,6 +12,9 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
+/***
+ * Checker is a singleton class used for input validation and time conversions. Contains static methods for the controllers to use
+ */
 public class Checker {
     /***
      * Creates the Singleton class instance
@@ -34,6 +37,12 @@ public class Checker {
         return checker;
     }
 
+    /***
+     * Checks if a given customer has any appointments in the databse
+     * @param customer the customer to be verified
+     * @return true if appointments exist, false if the customer has no appointments
+     * @throws SQLException
+     */
     public static boolean checkCustKeyRes(Customer customer) throws SQLException {
         String sql = "SELECT Appointment_ID FROM client_schedule.appointments WHERE Customer_ID =?";
         PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
@@ -46,6 +55,9 @@ public class Checker {
 
     }
 
+    /***
+     * Displays JavaFX alert
+     */
     public static void deleteCustNotification(){
         Alert errorA = new Alert(Alert.AlertType.INFORMATION);
         errorA.setTitle("Notification");
@@ -55,6 +67,9 @@ public class Checker {
         return;
     }
 
+    /***
+     * Displays JavaFX alert
+     */
     public static void deleteApptNotification(Appointment appointment){
         Alert errorA = new Alert(Alert.AlertType.INFORMATION);
         errorA.setTitle("Notification");
@@ -65,6 +80,11 @@ public class Checker {
         return;
     }
 
+    /***
+     * Converts local time to UTC time
+     * @param t local time as a LocalDateTime
+     * @return UTC time as a LocalDateTime
+     */
     public static LocalDateTime localToUTC(LocalDateTime t){
         ZonedDateTime zoned = t.atZone(ZoneId.systemDefault());
         ZonedDateTime utcZoned = zoned.withZoneSameInstant(ZoneOffset.UTC);
@@ -72,6 +92,11 @@ public class Checker {
         return utcLDT;
     }
 
+    /***
+     * Converts UTC time to local time
+     * @param t UTC time as a LocalDateTime
+     * @return local time as a LocalDateTime
+     */
     public static LocalDateTime utcToLocal(LocalDateTime t){
         ZonedDateTime zoned = t.atZone(ZoneId.of("UTC"));
         ZonedDateTime localZoned = zoned.withZoneSameInstant(ZoneOffset.systemDefault());
@@ -79,6 +104,11 @@ public class Checker {
         return localLDT;
     }
 
+    /***
+     * Checks for empty fields on the customer screens
+     * @param customer Customer object
+     * @return true if fields are empty, false if fields are not empty
+     */
     public static boolean customerInputVal(Customer customer){
         if(customer.getName().isEmpty()
                 || customer.getAddress().isEmpty()
@@ -90,11 +120,14 @@ public class Checker {
             errorA.setContentText("Name, address, postal code, and phone fields can not be blank");
             errorA.showAndWait();
 
-
-
             return true;} else {return false;}
     }
 
+    /***
+     * Validates  that appointment is scheduled within business hours
+     * @param appointment Appointment object
+     * @return true if appointment is not within business hours
+     */
     public static boolean workDays(Appointment appointment){
         LocalTime morning = LocalTime.of(8,0);
         LocalTime evening = LocalTime.of(22,0);
@@ -135,6 +168,12 @@ public class Checker {
         } else {return false;}
     }
 
+    /***
+     * Checks for overlapping appointments for a customer
+     * @param appointment Appointment object
+     * @return true if a customer has overlapping appointments
+     * @throws SQLException database error
+     */
     public static boolean overlap(Appointment appointment) throws SQLException {
         int customerID = appointment.getCustomerId();
         ObservableList<LocalDateTime> starts = FXCollections.observableArrayList();
@@ -162,11 +201,9 @@ public class Checker {
                 "End Times : " + appointment.getEnd().toLocalTime() + "   " + ends.get(0).toLocalTime());
         */
 
-
         if(starts.size() < 1){
             return false;
         }
-
         if(appointment.getStart().isAfter(appointment.getEnd())){
             Alert errorB = new Alert(Alert.AlertType.ERROR);
             errorB.setTitle("ERROR");
@@ -174,7 +211,6 @@ public class Checker {
             errorB.setContentText("Appointment ends before it starts.");
             errorB.showAndWait();
             return true;
-
         }
         for (int i = 0; i < starts.size(); i++ ){
             if(appointment.getStart().isAfter(starts.get(i)) && appointment.getStart().isBefore(ends.get(i))
@@ -192,9 +228,13 @@ public class Checker {
         } else {continue;}
         }
         return false;
-
     }
 
+    /***
+     * Displays a notification for any appointments scheduled within 15 minutes
+     * @param val a boolean value. True for an appointment being within 15 minutes
+     * @param schedule list of all appointments for a contact
+     */
     public static void alertFifteen(Boolean val, ObservableList<Appointment> schedule){
         if (val){
             System.out.println("alert15 True");
@@ -215,17 +255,14 @@ public class Checker {
         }
     }
 
+    /***
+     * Fromats time into a human readable format
+     * @param ldt a LocalDateTime to be formatted
+     * @return Human readable time as a String
+     */
     public static String myTimeFormat(LocalDateTime ldt){
         String easyDateTime = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
                 .format(ldt);
         return easyDateTime;
-
     }
-
-
-
-
-
-
-
 }

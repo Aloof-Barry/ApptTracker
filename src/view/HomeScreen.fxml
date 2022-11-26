@@ -118,10 +118,10 @@
                                     <TableColumn fx:id="descriptionFX" prefWidth="78.0" text="Description" />
                                     <TableColumn fx:id="locationFX" prefWidth="70.0" text="Location" />
                                     <TableColumn fx:id="contactFX" prefWidth="75.0" text="Contact" />
-                                    <TableColumn fx:id="typeFX" prefWidth="65.0" text="Type" />
-                                    <TableColumn fx:id="startFX" prefWidth="135.0" text="Start" />
-                                    <TableColumn fx:id="endFX" prefWidth="118.0" text="End" />
-                                    <TableColumn fx:id="customerid_appointmentsFX" prefWidth="45.0" text="Cust ID" />
+                                    <TableColumn fx:id="typeFX" prefWidth="53.0" text="Type" />
+                                    <TableColumn fx:id="startFX" prefWidth="137.0" text="Start" />
+                                    <TableColumn fx:id="endFX" prefWidth="125.0" text="End" />
+                                    <TableColumn fx:id="customerid_appointmentsFX" prefWidth="48.0" text="Cust ID" />
                                     <TableColumn fx:id="useridFX" prefWidth="47.0" text="User ID" />
                                  </columns>
                                  <VBox.margin>

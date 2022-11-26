@@ -1,18 +1,14 @@
 package model;
 
-import helper.JDBC;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
+/***
+ * Interface to be implemented by Data Access Objects
+ * Contained is an example of LAMBDA expression and streams.
+ * This interface did not receive as much code as I thought it would
+ */
 public interface DAOInterface {
 
     /***

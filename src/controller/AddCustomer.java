@@ -21,34 +21,70 @@ import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/***
+ *Controller Class for the Add Customer Screen
+ */
 public class AddCustomer implements Initializable {
 
+    /***
+     * JavaFX object to represent fields on the user interface
+     */
     public ChoiceBox firstdivFX =  new ChoiceBox(FXCollections.observableArrayList());
+
+    /***
+     * JavaFX object to represent fields on the user interface
+     */
     public ChoiceBox countryFX;
+
+    /***
+     * JavaFX object to represent fields on the user interface
+     */
     public TextField customeridFX;
+
+    /***
+     * JavaFX object to represent fields on the user interface
+     */
     public TextField addressFX;
+
+    /***
+     * JavaFX object to represent fields on the user interface
+     */
     public TextField nameFX;
+
+    /***
+     * JavaFX object to represent fields on the user interface
+     */
     public TextField postalcodeFX;
+
+    /***
+     * JavaFX object to represent fields on the user interface
+     */
     public TextField phoneFX;
+
+    /***
+     * JavaFX object to represent the anchor pane. Used for scene navigation
+     */
     public AnchorPane anchorpaneFX;
 
+    /***
+     * LAMDA
+     * Populates the items in the Choice boxes.
+     * LAMDA block of code to set an action event on Country drop down to change contents of Division ID drop
+     * down based on the selected value in Country drop down. Changing the Country will execute the LAMDA function.
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("AddCustomer Screen Init");
 
         // Set contents of Country Drop Down
-
         try {
             countryFX.setItems(CustomerDao.selectCountries());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-        /***Set Contents of Division drop down
-         *LAMDA block of code to set an action event on Country drop down to change contents of Division ID drop
-         * down based on the selected value in Country drop down
-         */
-
         countryFX.setOnAction(event -> {
             System.out.println(countryFX.getValue() + " selected from drop down");
 
@@ -62,8 +98,10 @@ public class AddCustomer implements Initializable {
         });
     }
 
-
-
+    /***
+     * Method for going to the Home Screen
+     * @throws IOException Failed I/O operation
+     */
     public void toHome() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/HomeScreen.fxml")));
         Stage stage = (Stage) (anchorpaneFX).getScene().getWindow();
@@ -74,15 +112,13 @@ public class AddCustomer implements Initializable {
     }
 
     /***
-     * Saves the inputted data and inserts a customer into the database
-     * @param actionEvent User clicks Save button to generate actionEvent
-     * @throws IOException
-     * @throws SQLException
+     * Save button
+     * Saves the customer, triggers relevant alerts, returns to Home Screen
+     * @param actionEvent passed when save button is pressed on screen
+     * @throws IOException Failed I/O operation
+     * @throws SQLException For database access errors
      */
-
     public void onSave(ActionEvent actionEvent) throws IOException, SQLException {
-
-
         int customerId = 222;
         String name = nameFX.getText();
         String address = addressFX.getText();
@@ -95,12 +131,15 @@ public class AddCustomer implements Initializable {
         if (Checker.customerInputVal(customer)){
             return;
         }
-
-
         CustomerDao.insertCustomer(customer);
         toHome();
     }
 
+    /***
+     * Close button
+     * @param actionEvent passed when closed button is pressed on the screen
+     * @throws IOException Failed I/O operation
+     */
     public void onCancel(ActionEvent actionEvent) throws IOException {
         toHome();
     }

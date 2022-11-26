@@ -2,26 +2,26 @@ package model;
 
 import helper.JDBC;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/***
+ * Data Access Object for Appointments
+ * Instantiated as a Singleton
+ */
 public class AppointmentDao {
 
     /***
      * Single instance of AppointmentDao class
      */
     private static final AppointmentDao appointmentDao = new AppointmentDao();
-
 
     /***
      * Constructor
@@ -39,29 +39,30 @@ public class AppointmentDao {
     }
 
     /***
-     * Field
+     * Constant
+     * All possible times in a day
      */
     public static final List<String> listAllTimes = Arrays.asList("00:00", "00:30", "01:00", "01:30", "02:00", "02:30", "03:00", "03:30", "04:00", "04:30", "05:00", "05:30", "06:00", "06:30",
             "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30",
             "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00", "23:30");
 
     /***
-     * Field
+     * Constant
+     * listAllTimes turned into an ObservableList
      */
     public static final ObservableList<String> allTimes = FXCollections.observableArrayList(listAllTimes);
 
     /***
      * Field
+     * Container for combinations of Month and Type
      */
     public static ObservableList<MonthType> monthTypeList = FXCollections.observableArrayList();
 
     /***
      * Field
+     * List of all Appointment Abstract classes pulled from the database
      */
     public static ObservableList<Appointment> allAppointments = FXCollections.observableArrayList();
-
-
-
 
     /***
      * Getter
@@ -139,12 +140,24 @@ public class AppointmentDao {
         }
     }
 
+    /***
+     * Getter
+     * @return monthTypeList
+     */
     public static ObservableList<MonthType> getMonthTypeList(){
         return monthTypeList;
     }
 
+    /***
+     * Appends object to monthTypeList
+     * @param monthType object containing month and type combinations
+     */
     public static void addMonthType(MonthType monthType){monthTypeList.add(monthType);}
 
+    /***
+     * Queries DB for appointment types per month as well as the total per month
+     * @throws SQLException database error
+     */
     public static void setMonthTypeList() throws SQLException {
         String  sql = "SELECT MONTH(Start) AS Month, Type, COUNT(Appointment_ID) AS Total\n" +
                 "FROM client_schedule.appointments\n" +
@@ -160,14 +173,14 @@ public class AppointmentDao {
 
             MonthType monthType = new MonthType(month, type, total);
             monthType.setMonth(monthType.getMonth());
-
-
             addMonthType(monthType);
-
         }
-
     }
 
+    /***
+     * Executes INSERT query for a given appointment
+     * @param appointment the Appointment object to be inserted
+     */
     public static void insertAppointment(Appointment appointment){
         try{
             String sql = "INSERT INTO client_schedule.appointments (Appointment_ID, Title, Description, Location, Type," +
@@ -186,6 +199,12 @@ public class AppointmentDao {
         }
     }
 
+    /***
+     * Converts Contact Name to Contact ID
+     * @param contact Contant Name
+     * @return Contact ID
+     * @throws SQLException Database error
+     */
     public static int contactToID(String contact) throws SQLException {
         String sql = "SELECT Contact_ID FROM client_schedule.contacts WHERE Contact_Name =?";
         PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
@@ -199,8 +218,11 @@ public class AppointmentDao {
         return contactIDList.get(0);
     }
 
-
-
+    /***
+     * SELECT query for all Contacts
+     * @return Observable List of all Contact Names
+     * @throws SQLException Database Error
+     */
     public static ObservableList selectContacts() throws SQLException {
 
         ObservableList<String> contactList = FXCollections.observableArrayList();
@@ -215,10 +237,14 @@ public class AppointmentDao {
             System.out.println("append " + contact + " to list");
             contactList.add(contact);
         }
-
         return contactList;
     }
 
+    /***
+     * SELECT query for Customer ID
+     * @return list of Customer IDs
+     * @throws SQLException Database error
+     */
     public static ObservableList selectCustomerID() throws SQLException {
 
         ObservableList<String> customerList = FXCollections.observableArrayList();
@@ -233,10 +259,14 @@ public class AppointmentDao {
             System.out.println("append " + customer + " to list");
             customerList.add(customer);
         }
-
         return customerList;
     }
 
+    /***
+     * SELECT query for User ID
+     * @return List of user IDs
+     * @throws SQLException databse error
+     */
     public static ObservableList selectUserID() throws SQLException {
 
         ObservableList<String> userList = FXCollections.observableArrayList();
@@ -251,10 +281,14 @@ public class AppointmentDao {
             System.out.println("append " + user + " to list");
             userList.add(user);
         }
-
         return userList;
     }
 
+    /***
+     * UPDATE query for appointments
+     * @param appointment Appointment object
+     * @throws SQLException database error
+     */
     public static void updateAppointment(Appointment appointment) throws SQLException {
         String sql = "UPDATE client_schedule.appointments\n" +
                 "SET Appointment_ID = " + appointment.getAppointmentId() + ", Title = \'" + appointment.getTitle() +
@@ -265,12 +299,15 @@ public class AppointmentDao {
                 "WHERE Appointment_ID = " + appointment.getAppointmentId();
         System.out.println(sql);
 
-
         PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
         ps.execute();
-
     }
 
+    /***
+     * DELETE query for appointments
+     * @param appointment Appointment object
+     * @throws SQLException Databse error
+     */
     public static void deleteAppointment(Appointment appointment) throws SQLException {
         String sql = "DELETE FROM client_schedule.appointments\n" +
                 "WHERE Appointment_ID =?";
@@ -282,6 +319,11 @@ public class AppointmentDao {
 
     }
 
+    /***
+     * DELETE query for an appointment. Deletes all of a given customer
+     * @param customer Customer Object
+     * @throws SQLException databse error
+     */
     public static void deleteCustAppts(Customer customer) throws SQLException {
         String sql = "DELETE FROM client_schedule.appointments\n" +
                 "WHERE Customer_ID =?";
@@ -290,9 +332,14 @@ public class AppointmentDao {
         ps.setString(1, Integer.toString(customer.getCustomerId()));
         System.out.println(ps);
         ps.execute();
-
     }
 
+    /***
+     * SELECT query for all appointments for a given contact
+     * @param contactChoice contact
+     * @return List of appointments for the contact
+     * @throws SQLException database error
+     */
     public static ObservableList<Appointment> selectSchedule(String contactChoice) throws SQLException {
         ObservableList<Appointment> schedule = FXCollections.observableArrayList();
         String sql = "SELECT a.Appointment_ID, a.Title, a.Description, a.Location, c.Contact_Name, a.Type, a.Start, a.End, a.User_ID, a.Customer_ID\n" +
@@ -326,6 +373,11 @@ public class AppointmentDao {
         return schedule;
     }
 
+    /***
+     * SELECT query for all customers
+     * @return List of all customers in the db
+     * @throws SQLException database error
+     */
     public static ObservableList selectCustomers() throws SQLException {
 
         ObservableList<String> customerList = FXCollections.observableArrayList();
@@ -340,16 +392,20 @@ public class AppointmentDao {
             System.out.println("append " + customer + " to list");
             customerList.add(customer);
         }
-
         return customerList;
     }
 
+    /***
+     * SELECT query for all appointments for a given customer name
+     * @param customer the customer name
+     * @return list of appointments with the customer
+     * @throws SQLException databse error
+     */
     public static ObservableList<Appointment> customerSchedule(String customer) throws SQLException {
         ObservableList<Appointment> schedule = FXCollections.observableArrayList();
         String sql = "SELECT a.Appointment_ID, a.Title, a.Description, a.Location, c.Contact_Name, a.Type, a.Start, a.End, a.User_ID, a.Customer_ID\n" +
                 "FROM client_schedule.appointments AS a\n" +
                 "JOIN client_schedule.contacts AS c ON a.Contact_ID = c.Contact_ID\n" +
-
                 "WHERE Customer_ID =? ORDER BY Start";
         PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
         ps.setString(1, Integer.toString(customerToID(customer)));
@@ -378,6 +434,12 @@ public class AppointmentDao {
         return schedule;
     }
 
+    /***
+     * Converts Customer Name to Customer ID
+     * @param customer The customer name
+     * @return the customer id as and int
+     * @throws SQLException database error
+     */
     public static int customerToID(String customer) throws SQLException {
         String sql = "SELECT Customer_ID FROM client_schedule.customers WHERE Customer_Name =?";
         PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
@@ -395,16 +457,6 @@ public class AppointmentDao {
         DateTimeFormatter formatStyle = DateTimeFormatter.ofPattern("dd-MM-yyy HH:mm");
         return ldt.format(formatStyle);
     }
-
-
-
-
-
-
-
-
-
-
 }
 
 

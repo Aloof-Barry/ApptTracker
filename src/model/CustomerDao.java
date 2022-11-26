@@ -9,6 +9,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+/***
+ * Data Access Object Class for customer data
+ */
 public class CustomerDao implements DAOInterface{
 
     /***
@@ -45,10 +48,13 @@ public class CustomerDao implements DAOInterface{
         return allCustomers;
     }
 
+    /***
+     * Appends a Customer object to the allCustomers list
+     * @param customer Customer Object
+     */
     public static void addCustomer(Customer customer){
         allCustomers.add(customer);
     }
-
 
     /***
      * Clears the current list of all the customers in the Java Program and reloads it with a fresh list of all the customers
@@ -79,12 +85,9 @@ public class CustomerDao implements DAOInterface{
                 Customer customer = new Customer(customerId, name, address, postalCode, phone, country, divisionId);
                 addCustomer(customer);
             }
-
         } catch (SQLException e){
             e.printStackTrace();
         }
-
-
     }
 
     /***
@@ -107,9 +110,14 @@ public class CustomerDao implements DAOInterface{
         catch (SQLException e){
             e.printStackTrace();
         }
-
     }
 
+    /***
+     * UPDATE query to update a customer's data
+     * @param customerId The customer's ID
+     * @param newCustomer Customer Object
+     * @throws SQLException Database error
+     */
     public static void updateCustomer(int customerId, Customer newCustomer) throws SQLException {
         String sql = "UPDATE client_schedule.customers\n" +
                 "SET Customer_ID = " + customerId + ", Customer_Name = \'" + newCustomer.getName() +
@@ -119,8 +127,6 @@ public class CustomerDao implements DAOInterface{
 
         PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
         ps.execute();
-
-
     }
 
     /***
@@ -142,7 +148,6 @@ public class CustomerDao implements DAOInterface{
             System.out.println("append " + country + " to list");
             countryList.add(country);
         }
-
         return countryList;
     }
 
@@ -167,7 +172,6 @@ public class CustomerDao implements DAOInterface{
                 countryID = "3";
                 break;
         }
-
         String sql =
                 "SELECT Division\n" +
                 "FROM client_schedule.first_level_divisions\n" +
@@ -179,10 +183,15 @@ public class CustomerDao implements DAOInterface{
             System.out.println("append " + division + " to list");
             divisionList.add(division);
         }
-
         return divisionList;
     }
 
+    /***
+     * Converts the First Level Division name into the division ID
+     * @param firstDiv The First Level Division as a String
+     * @return int divisionID
+     * @throws SQLException Database Error
+     */
     public static int firstDivToID(String firstDiv) throws SQLException {
         String sql = "SELECT Division_ID FROM client_schedule.first_level_divisions WHERE Division =?";
         PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
@@ -194,13 +203,14 @@ public class CustomerDao implements DAOInterface{
             System.out.println("Selecting Div ID" + divID);
             divisionIDList.add(divID);
         }
-
-
-
         return divisionIDList.get(0);
-
     }
 
+    /***
+     * DELETE query for a single customer
+     * @param customer Customer Object to be deleted
+     * @throws SQLException Databse Error
+     */
     public static void deleteCustomer(Customer customer) throws SQLException {
         String sql = "DELETE FROM client_schedule.customers\n" +
                 "WHERE Customer_ID =?";
@@ -209,10 +219,5 @@ public class CustomerDao implements DAOInterface{
         ps.setString(1, Integer.toString(customer.getCustomerId()));
         System.out.println(ps);
         ps.execute();
-
     }
-
-
-
-
 }

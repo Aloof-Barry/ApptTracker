@@ -1,22 +1,38 @@
 package model;
 
 import helper.JDBC;
-
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+/***
+ * Singleton Class for handling reports
+ * I forgot to use this class so maybe methods can be migrated here in the future
+ */
 public class Report {
+
+    /***
+     * Single instance of Report class
+     */
     private static final Report report = new Report();
 
+    /***
+     * Constructor
+     */
     private Report(){
-
     }
 
+    /***
+     * Method to create singleton
+     * @return one instance of Report Class
+     */
     public static Report getReport(){
         return report;
     }
 
-
+    /***
+     * Resets the database to its original state
+     * !!Deprecated!!
+     */
     public static void resetData(){
         try{
 
