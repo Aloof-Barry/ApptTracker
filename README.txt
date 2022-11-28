@@ -14,7 +14,14 @@ Java SE JDK-18.0.2.1
 JavaFX SDK 18.0.1
 MySQL-connector-java-8.0.29
 
-How to run the program: press run after JDK, JavaFX library, and MySQL connector are pathed to the program
+How to run the program:   Paths should be correctly set for the VM. Check the below steps if their is an issue
+
+File/Project Structure/ Libraries:    Set lib to path C:\Users\LabUser\Desktop\javafx-sdk-17.0.1\lib
+                                      Set MySQL Connector to C:\Users\LabUser\Desktop\mysql-connector-java-8.025\mysql-connector-java-8.0.25.jar
+
+File/ Settings/ Path Variables:       Set PATH_TO_FX to C:\Users\LabUser\Desktop\javafx-sdk-17.0.1\lib
+
+Ensure JDK 17.0.1 for Java 17 is selected in the Run/Debug Configurations screen for Main
 
 Additional Report: The additional report is reached by clicking the 'Customer Schedule' button found in the 
 'Reports' tab of the Home Screen. The report provides a choice box to select a customer. After selecting a 

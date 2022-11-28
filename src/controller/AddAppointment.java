@@ -24,7 +24,7 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 /***
- * Controller Class for the Add Appointments Screen
+ * Controller Class for the Add Appointments Screen.
  * */
 public class AddAppointment implements Initializable {
 
@@ -49,7 +49,7 @@ public class AddAppointment implements Initializable {
     public TextField locationFX;
 
     /***
-     * JavaFX object to represent fields on the user interface
+     * JavaFX object to represent fields on the user interface.
      */
     public TextField typeFX;
 

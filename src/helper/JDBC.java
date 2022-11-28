@@ -31,7 +31,7 @@ public abstract class JDBC {
     /***
      * Variable to hold the JDBC URL
      */
-    private static final String jdbcUrl = prot + ven + loc + dbName + "?connectionTimeZone = SERVER";
+    private static final String jdbcUrl = prot + ven + loc + dbName;
 
     /***
      * Variable to hold the driver reference
