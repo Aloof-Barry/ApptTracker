@@ -15,6 +15,16 @@ import java.util.ResourceBundle;
 
 /***
  * Main Class of Program
+ * Cody Crusenberry
+ * Email: ccruse7@wgu.edu
+ * Student ID: 001418316
+ * Application Version 1.0
+ * Date 11/26/2022
+ *
+ * IDE: IntelliJ IDEA Community Edition 2022.2.1
+ * Java SE JDK-18.0.2.1
+ * JavaFX SDK 18.0.1
+ * MySQL-connector-java-8.0.29
  */
 public class Main extends Application{
 

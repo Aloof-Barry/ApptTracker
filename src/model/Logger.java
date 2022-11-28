@@ -61,7 +61,7 @@ public class Logger {
             userList.add(user);
         }
         if(userList.isEmpty()){
-            makeLog(username, false);
+            makeLog("No User Name Given", false);
             return true;
         } else {
             currentUser = userList.get(0);

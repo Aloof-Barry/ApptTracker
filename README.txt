@@ -20,13 +20,15 @@ Additional Report: The additional report is reached by clicking the 'Customer Sc
 'Reports' tab of the Home Screen. The report provides a choice box to select a customer. After selecting a 
 customer, the table will populate with all of that customer's appointments in the database. 
 
-LAMDAS function locations (by module) in the program:
+LAMBDAS function locations (by module) in the program:
 
 	AddCustomer
 		initialize();
 
+    DAOInterface
+    		customerToString();
+
 	ModifyCustomer
 		initialize();
 
-	DAOInterface
-		customerToString();
+

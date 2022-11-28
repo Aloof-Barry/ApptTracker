@@ -68,10 +68,11 @@ public class AddCustomer implements Initializable {
     public AnchorPane anchorpaneFX;
 
     /***
-     * LAMDA
+     * LAMBDA
      * Populates the items in the Choice boxes.
-     * LAMDA block of code to set an action event on Country drop down to change contents of Division ID drop
-     * down based on the selected value in Country drop down. Changing the Country will execute the LAMDA function.
+     * LAMBDA block of code to set an action event on Country drop down to change contents of Division ID drop
+     * down based on the selected value in Country drop down. Changing the Country will execute the LAMBDA function.
+     * The reason for using a LAMBDA expression here is to execute a line of code on action of the choice box
      *
      * @param url
      * @param resourceBundle

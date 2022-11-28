@@ -139,7 +139,7 @@ public class ModifyAppointment implements Initializable {
 
     /***
      * Method for going to the Home Screen
-     * @throws IOException Failed I/O operation
+     * @throws IOException Failed I/O operation FXMLoader
      */
     public void toHome() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/HomeScreen.fxml")));
@@ -182,8 +182,6 @@ public class ModifyAppointment implements Initializable {
             Checker.apptInputAlert();
             return;
         }
-
-
         int appointmentID = Integer.parseInt(appointmentidFX.getText());
         LocalDateTime start = LocalDateTime.of(startdateFX.getValue(), LocalTime.parse(starttimeFX.getValue().toString()));
         LocalDateTime end = LocalDateTime.of(enddateFX.getValue(), LocalTime.parse(endtimeFX.getValue().toString()));
@@ -194,7 +192,6 @@ public class ModifyAppointment implements Initializable {
                 startdateFX.getValue(), enddateFX.getValue())){
             return;
         }
-
         Appointment newAppointment = new Appointment(appointmentID, titleFX.getText(), descriptionFX.getText(), locationFX.getText(),
                 (String) contactFX.getValue(), typeFX.getText(), start, end, Integer.parseInt(customeridFX.getValue().toString()), Integer.parseInt(useridFX.getValue().toString()));
 
@@ -211,7 +208,7 @@ public class ModifyAppointment implements Initializable {
     /***
      * Close button
      * @param actionEvent passed when closed button is pressed on the screen
-     * @throws IOException Failed I/O operation
+     * @throws IOException Failed I/O operation FXMLoader
      */
     public void onClose(ActionEvent actionEvent) throws IOException {
         toHome();

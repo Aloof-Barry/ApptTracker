@@ -72,7 +72,8 @@ public class ModifyCustomer implements Initializable {
 
     /***
      * Populates the items in the fields and choice boxes
-     * The Lamba expression is a function that triggers when the Country choice box is changed. The function changes the contents of the Division choice box
+     * The Lambda expression is a function that triggers when the Country choice box is changed. The function changes the contents of the Division choice box
+     * The reason for using a LAMBDA expression here is to execute a line of code on action of the choice box.
      * @param url
      * @param resourceBundle
      */
