@@ -14,7 +14,7 @@ Java SE JDK-18.0.2.1
 JavaFX SDK 18.0.1
 MySQL-connector-java-8.0.29
 
-How to run the program:   Paths should be correctly set for the VM. Check the below steps if their is an issue
+How to run the program:   Paths should be correctly set for the VM. Check the below steps if there is an issue
 
 File/Project Structure/ Libraries:    Set lib to path C:\Users\LabUser\Desktop\javafx-sdk-17.0.1\lib
                                       Set MySQL Connector to C:\Users\LabUser\Desktop\mysql-connector-java-8.025\mysql-connector-java-8.0.25.jar
