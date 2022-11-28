@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6ece3913-6024-4ea3-87b4-4cb381f1962b" name="Changes" comment="Added more input validation&#10;&#10;Remaining Tasks:&#10;Generate JavaDoc&#10;Test code">
+    <list default="true" id="6ece3913-6024-4ea3-87b4-4cb381f1962b" name="Changes" comment="Generated Java Docs&#10;&#10;Remaining Tasks:&#10;Test code">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReadMe.txt" beforeDir="false" afterPath="$PROJECT_DIR$/README.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/login_activity.txt" beforeDir="false" afterPath="$PROJECT_DIR$/login_activity.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/AddAppointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/AddAppointment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/AddCustomer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/AddCustomer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/ModifyAppointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ModifyAppointment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/ModifyCustomer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ModifyCustomer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/DAOInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/DAOInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Logger.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +135,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669643325538</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Generated Java Docs&#10;&#10;Remaining Tasks:&#10;Test code">
+      <created>1669647141434</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1669647141434</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -167,7 +166,8 @@
     <MESSAGE value="Code commented to include LAMBDA expressions&#10;&#10;Remaining Tasks:&#10;Generate JavaDoc&#10;Readme file,&#10;Test code" />
     <MESSAGE value="Added readme file and fixed reports to show time correctly&#10;&#10;Remaining Tasks:&#10;Generate JavaDoc&#10;Test code" />
     <MESSAGE value="Added more input validation&#10;&#10;Remaining Tasks:&#10;Generate JavaDoc&#10;Test code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added more input validation&#10;&#10;Remaining Tasks:&#10;Generate JavaDoc&#10;Test code" />
+    <MESSAGE value="Generated Java Docs&#10;&#10;Remaining Tasks:&#10;Test code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Generated Java Docs&#10;&#10;Remaining Tasks:&#10;Test code" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
