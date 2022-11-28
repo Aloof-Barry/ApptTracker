@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -119,6 +120,14 @@ public class AddCustomer implements Initializable {
      * @throws SQLException For database access errors
      */
     public void onSave(ActionEvent actionEvent) throws IOException, SQLException {
+        if(((String) firstdivFX.getValue()) == null){
+            Alert errorA = new Alert(Alert.AlertType.ERROR);
+            errorA.setTitle("ERROR");
+            errorA.setHeaderText("Input Validation Error");
+            errorA.setContentText("Country and First Level Division must be completed.");
+            errorA.showAndWait();
+            return;
+        }
         int customerId = 222;
         String name = nameFX.getText();
         String address = addressFX.getText();

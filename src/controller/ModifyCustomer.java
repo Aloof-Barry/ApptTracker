@@ -10,6 +10,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import model.Checker;
 import model.Customer;
 import model.CustomerDao;
 
@@ -136,8 +137,18 @@ public class ModifyCustomer implements Initializable {
      */
     public void onSave(ActionEvent actionEvent) throws SQLException, IOException {
         int customerId = Integer.parseInt(customeridFX.getText());
+        if(firstdivFX.getValue() == null){
+            Checker.apptInputAlert();
+            return;
+        }
+
+
         Customer newCustomer = new Customer(customerId, nameFX.getText(), addressFX.getText(), postalcodeFX.getText(),
                 phoneFX.getText(), (String) countryFX.getValue(), CustomerDao.firstDivToID((String) firstdivFX.getValue()));
+        if (Checker.customerInputVal(newCustomer)){
+            return;
+        }
+
         CustomerDao.updateCustomer(customerId, newCustomer);
         toHome();
     }

@@ -158,9 +158,42 @@ public class ModifyAppointment implements Initializable {
      * @throws SQLException For database access errors
      */
     public void onSave(ActionEvent actionEvent) throws SQLException, IOException {
+        if (customeridFX.getValue() ==null){
+            Checker.apptInputAlert();
+            return;
+        }
+        if (starttimeFX.getValue() ==null){
+            Checker.apptInputAlert();
+            return;
+        }
+        if (endtimeFX.getValue() ==null){
+            Checker.apptInputAlert();
+            return;
+        }
+        if (useridFX.getValue() ==null){
+            Checker.apptInputAlert();
+            return;
+        }
+        if (startdateFX.getValue() ==null){
+            Checker.apptInputAlert();
+            return;
+        }
+        if (enddateFX.getValue() ==null){
+            Checker.apptInputAlert();
+            return;
+        }
+
+
         int appointmentID = Integer.parseInt(appointmentidFX.getText());
         LocalDateTime start = LocalDateTime.of(startdateFX.getValue(), LocalTime.parse(starttimeFX.getValue().toString()));
         LocalDateTime end = LocalDateTime.of(enddateFX.getValue(), LocalTime.parse(endtimeFX.getValue().toString()));
+
+        if(Checker.apptInputVal(titleFX.getText(), descriptionFX.getText(), locationFX.getText(),typeFX.getText(),
+                (String) contactFX.getValue(),  Integer.parseInt(customeridFX.getValue().toString()), LocalTime.parse(starttimeFX.getValue().toString()), LocalTime.parse(endtimeFX.getValue().toString()),
+                Integer.parseInt(useridFX.getValue().toString()),
+                startdateFX.getValue(), enddateFX.getValue())){
+            return;
+        }
 
         Appointment newAppointment = new Appointment(appointmentID, titleFX.getText(), descriptionFX.getText(), locationFX.getText(),
                 (String) contactFX.getValue(), typeFX.getText(), start, end, Integer.parseInt(customeridFX.getValue().toString()), Integer.parseInt(useridFX.getValue().toString()));

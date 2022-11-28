@@ -109,11 +109,13 @@ public class Checker {
      * @param customer Customer object
      * @return true if fields are empty, false if fields are not empty
      */
-    public static boolean customerInputVal(Customer customer){
+    public static boolean customerInputVal(Customer customer) throws SQLException {
         if(customer.getName().isEmpty()
                 || customer.getAddress().isEmpty()
                 || customer.getPhone().isEmpty()
                 || customer.getPostalCode().isEmpty()
+                || customer.getDivision().isBlank()
+                || customer.getCountry().isBlank()
         ) {Alert errorA = new Alert(Alert.AlertType.ERROR);
             errorA.setTitle("ERROR");
             errorA.setHeaderText("Input Validation Error");
@@ -265,4 +267,39 @@ public class Checker {
                 .format(ldt);
         return easyDateTime;
     }
+
+
+    public static boolean apptInputVal(String title, String description, String location, String type, String contact,
+                                       int customerID, LocalTime startTime, LocalTime endTime, int userID, LocalDate startDate,
+                                       LocalDate endDate){
+
+        if (title.isEmpty()
+        || description.isEmpty()
+        || location.isEmpty()
+        || type.isEmpty()
+        || contact.isEmpty()
+        || (((Integer) customerID) == null)
+        || startTime == null
+        || endTime == null
+        || (((Integer) userID) == null)
+        || startDate == null
+        || endDate == null){
+            apptInputAlert();
+            return true;
+        } else {return false;}
+
+    }
+
+    public static void apptInputAlert(){
+        Alert errorB = new Alert(Alert.AlertType.ERROR);
+        errorB.setTitle("ERROR");
+        errorB.setHeaderText("Input Validation Error");
+        errorB.setContentText("Please fill all fields in the form");
+        errorB.showAndWait();
+
+    }
+
+
+
+
 }
