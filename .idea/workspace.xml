@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6ece3913-6024-4ea3-87b4-4cb381f1962b" name="Changes" comment="Testing VM" />
+    <list default="true" id="6ece3913-6024-4ea3-87b4-4cb381f1962b" name="Changes" comment="Generated Java Docs for the VM Version" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,7 +35,7 @@
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
@@ -135,7 +135,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669647141434</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Generated Java Docs for the VM Version">
+      <created>1669653911901</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1669653911901</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -148,7 +155,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="&quot;1st&quot;" />
@@ -161,7 +167,8 @@
     <MESSAGE value="Added readme file and fixed reports to show time correctly&#10;&#10;Remaining Tasks:&#10;Generate JavaDoc&#10;Test code" />
     <MESSAGE value="Added more input validation&#10;&#10;Remaining Tasks:&#10;Generate JavaDoc&#10;Test code" />
     <MESSAGE value="Generated Java Docs&#10;&#10;Remaining Tasks:&#10;Test code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Generated Java Docs&#10;&#10;Remaining Tasks:&#10;Test code" />
+    <MESSAGE value="Generated Java Docs for the VM Version" />
+    <option name="LAST_COMMIT_MESSAGE" value="Generated Java Docs for the VM Version" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
