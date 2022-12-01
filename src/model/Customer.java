@@ -52,6 +52,8 @@ public class Customer {
      */
     private String division;
 
+
+
     /***
      * Constructor Method
      * @param customerId Customer ID
@@ -72,7 +74,10 @@ public class Customer {
         this.phone = phone;
         this.country = country;
         this.divisionId = divisionId;
+
     }
+
+
 
     /***
      * Getter Method

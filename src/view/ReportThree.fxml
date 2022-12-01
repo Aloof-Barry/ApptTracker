@@ -14,11 +14,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorpaneFX" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReportThree">
+<AnchorPane fx:id="anchorpaneFX" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReportThree">
     <children>
         <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="750.0">
             <children>
-                <Label alignment="CENTER" text="Customer Schedule">
+                <Label alignment="CENTER" text="Customers by Location">
                     <VBox.margin>
                         <Insets top="25.0" />
                     </VBox.margin>
@@ -40,19 +40,19 @@
                                 <Insets bottom="275.0" left="15.0" />
                             </HBox.margin>
                             <children>
-                                <Label text="Select Customer" />
-                                <ChoiceBox fx:id="customerFX" prefWidth="150.0" GridPane.rowIndex="1" />
+                                <Label text="Location" />
+                                <ChoiceBox fx:id="locationFX" prefWidth="150.0" GridPane.rowIndex="1" />
                             </children>
                         </GridPane>
-                        <TableView fx:id="tableFX" prefHeight="350.0" prefWidth="614.0">
+                        <TableView fx:id="tableFX" prefHeight="350.0" prefWidth="636.0">
                             <columns>
-                                <TableColumn fx:id="appointmentidFX" prefWidth="99.0" text="Appointment ID" />
-                                <TableColumn fx:id="titleFX" prefWidth="75.0" text="Title" />
-                                <TableColumn fx:id="typeFX" prefWidth="74.0" text="Type" />
-                                <TableColumn fx:id="descriptionFX" prefWidth="84.0" text="Description" />
-                                <TableColumn fx:id="startFX" prefWidth="98.0" text="Start" />
-                                <TableColumn fx:id="endFX" prefWidth="104.0" text="End" />
-                                <TableColumn fx:id="contactFX" prefWidth="64.0" text="Contact" />
+                                <TableColumn fx:id="customeridFX" prefWidth="76.0" text="Customer ID" />
+                                <TableColumn fx:id="nameFX" prefWidth="75.0" text="Name" />
+                                <TableColumn fx:id="addressFX" prefWidth="97.0" text="Address" />
+                                <TableColumn fx:id="divisionFX" prefWidth="124.0" text="First Level Division" />
+                                <TableColumn fx:id="postalcodeFX" prefWidth="79.0" text="Postal Code" />
+                                <TableColumn fx:id="futureFX" prefWidth="86.0" text="Future Appts" />
+                                <TableColumn fx:id="pastFX" prefWidth="73.0" text="Past Appts" />
                             </columns>
                             <HBox.margin>
                                 <Insets left="25.0" right="25.0" />

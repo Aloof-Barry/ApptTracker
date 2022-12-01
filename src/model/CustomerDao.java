@@ -7,6 +7,8 @@ import javafx.collections.ObservableList;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /***
@@ -220,4 +222,33 @@ public class CustomerDao implements DAOInterface{
         System.out.println(ps);
         ps.execute();
     }
+
+    public static ObservableList<Customer> selectLocals(String location) throws SQLException {
+        ObservableList<Customer> locals = FXCollections.observableArrayList();
+        String sql = "SELECT c.Customer_ID, c.Customer_Name, c.Address, c.Postal_Code, c.Phone, c.Division_ID, n.Country\n" +
+                "FROM client_schedule.customers AS c\n" +
+                "JOIN client_schedule.first_level_divisions AS f ON f.Division_ID = c.Division_ID\n" +
+                "JOIN client_schedule.countries AS n ON n.Country_ID = f.Country_ID\n"+
+                "WHERE Country =? ORDER BY Customer_Name";
+        PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+        ps.setString(1, location);
+        System.out.println(sql);
+        ResultSet rs = ps.executeQuery();
+
+
+        while(rs.next()){
+            int customerId = rs.getInt("Customer_ID");
+            String name =  rs.getString("Customer_Name");
+            String address = rs.getString("Address");
+            String postalCode = rs.getString("Postal_Code");
+            String phone = rs.getString("Phone");
+            String country = rs.getString("Country");
+            int divisionId = rs.getInt("Division_ID");
+            Customer customer = new Customer(customerId, name, address, postalCode, phone, country, divisionId);
+            locals.add(customer);
+        }
+        return locals;
+    }
+
+
 }

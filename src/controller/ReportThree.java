@@ -13,6 +13,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.AppointmentDao;
+import model.CustomerDao;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -24,55 +26,17 @@ import java.util.ResourceBundle;
  */
 public class ReportThree implements Initializable {
 
-    /***
-     * JavaFX object to represent the anchor pane on the user interface
-     */
+
     public AnchorPane anchorpaneFX;
-
-    /***
-     * JavaFX object to represent fields on the user interface
-     */
-    public ChoiceBox customerFX;
-
-    /***
-     * JavaFX object to represent the table on the user interface
-     */
+    public ChoiceBox locationFX;
     public TableView tableFX;
-
-    /***
-     * JavaFX object to represent fields on the user interface
-     */
-    public TableColumn appointmentidFX;
-
-    /***
-     * JavaFX object to represent fields on the user interface
-     */
-    public TableColumn titleFX;
-
-    /***
-     * JavaFX object to represent fields on the user interface
-     */
-    public TableColumn typeFX;
-
-    /***
-     * JavaFX object to represent fields on the user interface
-     */
-    public TableColumn descriptionFX;
-
-    /***
-     * JavaFX object to represent fields on the user interface
-     */
-    public TableColumn startFX;
-
-    /***
-     * JavaFX object to represent fields on the user interface
-     */
-    public TableColumn endFX;
-
-    /***
-     * JavaFX object to represent fields on the user interface
-     */
-    public TableColumn contactFX;
+    public TableColumn customeridFX;
+    public TableColumn nameFX;
+    public TableColumn addressFX;
+    public TableColumn divisionFX;
+    public TableColumn postalcodeFX;
+    public TableColumn futureFX;
+    public TableColumn pastFX;
 
     /***
      * Populates the items in the table
@@ -83,26 +47,31 @@ public class ReportThree implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            customerFX.setItems(AppointmentDao.selectCustomers());
+            locationFX.setItems(CustomerDao.selectCountries());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        customerFX.setOnAction(event -> {
-            ObservableList appointmentList = null;
+
+        locationFX.setOnAction(event -> {
+            System.out.println(locationFX.getValue() + " selected from drop down");
+
+            ObservableList customerList = null;
             try {
-                appointmentList = AppointmentDao.customerSchedule((customerFX.getValue()).toString());
+                customerList = CustomerDao.selectLocals((locationFX.getValue()).toString());
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-            tableFX.setItems(appointmentList);
-            appointmentidFX.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
-            titleFX.setCellValueFactory(new PropertyValueFactory<>("title"));
-            typeFX.setCellValueFactory(new PropertyValueFactory<>("type"));
-            descriptionFX.setCellValueFactory(new PropertyValueFactory<>("description"));
-            startFX.setCellValueFactory(new PropertyValueFactory<>("formattedStart"));
-            endFX.setCellValueFactory(new PropertyValueFactory<>("formattedEnd"));
-            contactFX.setCellValueFactory(new PropertyValueFactory<>("contact"));
+
+            tableFX.setItems(customerList);
+            customeridFX.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+            nameFX.setCellValueFactory(new PropertyValueFactory<>("name"));
+            addressFX.setCellValueFactory(new PropertyValueFactory<>("address"));
+            divisionFX.setCellValueFactory(new PropertyValueFactory<>("division"));
+            postalcodeFX.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
+
         });
+
+        
     }
 
     /***
