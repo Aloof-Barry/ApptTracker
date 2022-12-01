@@ -453,6 +453,11 @@ public class AppointmentDao {
         return customerIDList.get(0);
     }
 
+    /***
+     * converts LocalDateTime to human readable format
+     * @param ldt LocalDateTime
+     * @return String formatted string
+     */
     public static String myFormat(LocalDateTime ldt){
         DateTimeFormatter formatStyle = DateTimeFormatter.ofPattern("dd-MM-yyy HH:mm");
         return ldt.format(formatStyle);

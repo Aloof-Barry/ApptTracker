@@ -26,16 +26,54 @@ import java.util.ResourceBundle;
  */
 public class ReportThree implements Initializable {
 
-
+    /***
+     * JavaFX object to represent the anchor pane on the user interface
+     */
     public AnchorPane anchorpaneFX;
+
+    /***
+     * JavaFX object to represent fields on the user interface
+     */
     public ChoiceBox locationFX;
+
+    /***
+     * JavaFX object to represent the table on the user interface
+     */
     public TableView tableFX;
+
+    /***
+     * JavaFX object to represent fields on the user interface
+     */
     public TableColumn customeridFX;
+
+    /***
+     * JavaFX object to represent fields on the user interface
+     */
     public TableColumn nameFX;
+
+    /***
+     * JavaFX object to represent fields on the user interface
+     */
     public TableColumn addressFX;
+
+    /***
+     * JavaFX object to represent fields on the user interface
+     */
     public TableColumn divisionFX;
+
+    /***
+     * JavaFX object to represent fields on the user interface
+     */
     public TableColumn postalcodeFX;
+
+    /***
+     * JavaFX object to represent fields on the user interface
+     */
     public TableColumn futureFX;
+
+    /***
+     * JavaFX object to represent fields on the user interface
+     */
     public TableColumn pastFX;
 
     /***
@@ -68,10 +106,9 @@ public class ReportThree implements Initializable {
             addressFX.setCellValueFactory(new PropertyValueFactory<>("address"));
             divisionFX.setCellValueFactory(new PropertyValueFactory<>("division"));
             postalcodeFX.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
-
+            futureFX.setCellValueFactory(new PropertyValueFactory<>("future"));
+            pastFX.setCellValueFactory(new PropertyValueFactory<>("past"));
         });
-
-        
     }
 
     /***

@@ -52,7 +52,15 @@ public class Customer {
      */
     private String division;
 
+    /***
+     * Class member variable
+     */
+    private int future;
 
+    /***
+     * Class member variable
+     */
+    private int past;
 
     /***
      * Constructor Method
@@ -74,19 +82,38 @@ public class Customer {
         this.phone = phone;
         this.country = country;
         this.divisionId = divisionId;
-
+        this.future = makeFuture();
+        this.past = makePast();
     }
-
-
 
     /***
      * Getter Method
-     * @return
+     * @return future
+     */
+    public int getFuture() {
+        return future;
+    }
+
+    /***
+     * Getter Method
+     * @return past
+     */
+    public int getPast() {
+        return past;
+    }
+
+    /***
+     * Getter Method
+     * @return customerId
      */
     public int getCustomerId() {
         return customerId;
     }
 
+    /***
+     * Setter Method
+     * @param customerId
+     */
     public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
@@ -213,5 +240,51 @@ public class Customer {
     public String getDivision() throws SQLException {
         setDivision();
         return division;
+    }
+
+    /***
+     * Counts the number of future appointments for the customer
+     * @return int total
+     * @throws SQLException for SQL syntax error
+     */
+    public int makeFuture() throws SQLException {
+        int total = 400;
+        String  sql = "SELECT COUNT(Appointment_ID) AS Total\n" +
+                "FROM client_schedule.appointments\n" +
+
+                "WHERE Customer_ID=? AND Start > NOW()";
+        PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+        ps.setString(1, Integer.toString(getCustomerId()));
+        System.out.println(sql);
+        ResultSet rs = ps.executeQuery();
+
+        while(rs.next()){
+
+            total = rs.getInt("Total");
+        }
+        return total;
+    }
+
+    /***
+     * Counts the number of past appointments for the customer
+     * @return int total
+     * @throws SQLException for SQL syntax error
+     */
+    public int makePast() throws SQLException {
+        int total = 400;
+        String  sql = "SELECT COUNT(Appointment_ID) AS Total\n" +
+                "FROM client_schedule.appointments\n" +
+
+                "WHERE Customer_ID=? AND Start <= NOW()";
+        PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+        ps.setString(1, Integer.toString(getCustomerId()));
+
+        ResultSet rs = ps.executeQuery();
+        System.out.println(sql);
+        while(rs.next()){
+
+            total = rs.getInt("Total");
+        }
+        return total;
     }
 }

@@ -18,7 +18,7 @@
     <children>
         <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="750.0">
             <children>
-                <Label alignment="CENTER" text="Customers by Location">
+                <Label alignment="CENTER" text="Customer Activity by Region">
                     <VBox.margin>
                         <Insets top="25.0" />
                     </VBox.margin>

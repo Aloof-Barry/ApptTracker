@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorpaneFX" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeScreen">
+<AnchorPane fx:id="anchorpaneFX" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeScreen">
    <children>
       <TabPane layoutY="-1.0" prefHeight="500.0" prefWidth="750.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -175,7 +175,7 @@
                                     <Insets top="25.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#onReportThree" text="Customer's Schedule">
+                              <Button mnemonicParsing="false" onAction="#onReportThree" text="Customer Activity by Region">
                                  <VBox.margin>
                                     <Insets top="25.0" />
                                  </VBox.margin>

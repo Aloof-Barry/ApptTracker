@@ -223,6 +223,12 @@ public class CustomerDao implements DAOInterface{
         ps.execute();
     }
 
+    /***
+     * Selects all customers from a given country
+     * @param location
+     * @return List of Customer objects
+     * @throws SQLException SQL syntax error
+     */
     public static ObservableList<Customer> selectLocals(String location) throws SQLException {
         ObservableList<Customer> locals = FXCollections.observableArrayList();
         String sql = "SELECT c.Customer_ID, c.Customer_Name, c.Address, c.Postal_Code, c.Phone, c.Division_ID, n.Country\n" +
@@ -234,7 +240,6 @@ public class CustomerDao implements DAOInterface{
         ps.setString(1, location);
         System.out.println(sql);
         ResultSet rs = ps.executeQuery();
-
 
         while(rs.next()){
             int customerId = rs.getInt("Customer_ID");
@@ -249,6 +254,4 @@ public class CustomerDao implements DAOInterface{
         }
         return locals;
     }
-
-
 }

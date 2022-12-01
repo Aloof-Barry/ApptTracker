@@ -366,7 +366,6 @@ public class HomeScreen implements Initializable {
         stage.show();
     }
 
-
     /***
      * this method does not do anything right now
      * @param actionEvent passed when button is clicked
@@ -384,7 +383,7 @@ public class HomeScreen implements Initializable {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/ReportTwo.fxml")));
         Stage stage = (Stage) (anchorpaneFX).getScene().getWindow();
         Scene scene = new Scene(root, 750, 500);
-        stage.setTitle("Report One");
+        stage.setTitle("Report Two");
         stage.setScene(scene);
         stage.show();
     }
@@ -398,9 +397,8 @@ public class HomeScreen implements Initializable {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/ReportThree.fxml")));
         Stage stage = (Stage) (anchorpaneFX).getScene().getWindow();
         Scene scene = new Scene(root, 750, 500);
-        stage.setTitle("Report One");
+        stage.setTitle("Report Three");
         stage.setScene(scene);
         stage.show();
     }
-
 }

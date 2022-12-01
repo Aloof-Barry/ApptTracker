@@ -23,9 +23,9 @@ File/ Settings/ Path Variables:       Set PATH_TO_FX to C:\Users\LabUser\Desktop
 
 Ensure JDK 17.0.1 for Java 17 is selected in the Run/Debug Configurations screen for Main
 
-Additional Report: The additional report is reached by clicking the 'Customer Schedule' button found in the 
-'Reports' tab of the Home Screen. The report provides a choice box to select a customer. After selecting a 
-customer, the table will populate with all of that customer's appointments in the database. 
+Additional Report: The additional report is reached by clicking the 'Customer Activity by Region' button located
+on the Report tab of the Home Screen. The purpose of this report is to show the number of appointments a customer
+has had in the past and scheduled in the future. The customers data is separated by country.
 
 LAMBDAS function locations (by module) in the program:
 
